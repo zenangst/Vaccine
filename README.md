@@ -18,6 +18,8 @@ For more information about InjectionIII, head over to [https://github.com/johnno
 
 Vaccine does not cut-out the need to ever recompile, but it opens up for faster iteration and seeing your application change instantly. There will be scenarios where you will simply have to recompile your application in order to see the changes appear. Worth noting is that code injection only works in the simulator and has no effect when running it on a device.
 
+For additional information about how you can incorporate injection into your workflow, check out this [Medium post](https://medium.com/@robnorback/the-secret-to-1-second-compile-times-in-xcode-9de4ec8345a1).
+
 ## Usage
 
 The following examples are not meant to be best practices or the defacto way of doing code injection. The examples are based on personal experiences when working on projects that use InjectionIII.
