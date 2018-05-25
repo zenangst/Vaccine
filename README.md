@@ -9,7 +9,7 @@
 
 ## Description
 
-<img src="https://github.com/zenangst/Vaccine/blob/master/Images/Family-icon.png?raw=true" alt="Vaccine Icon" align="right" />
+<img src="https://github.com/zenangst/Vaccine/blob/master/Images/Vaccine-icon.png?raw=true" alt="Vaccine Icon" align="right" />
 
 Vaccine is a framework that aims to make your apps immune to recompile-decease.  Vaccine provides a straightforward way to make your application ready for code injection, also known as hot reloading. It provides extensions on application delegates, NSObject and view controllers.
 
