@@ -1,0 +1,16 @@
+PODS:
+  - Vaccine (0.1.0)
+
+DEPENDENCIES:
+  - Vaccine (from `../../`)
+
+EXTERNAL SOURCES:
+  Vaccine:
+    :path: "../../"
+
+SPEC CHECKSUMS:
+  Vaccine: be32e155c9180fe663beed1b5c95825fb4d6f132
+
+PODFILE CHECKSUM: ccfaad8b2956e673132268cb7acf21caae3d87a2
+
+COCOAPODS: 1.5.2
