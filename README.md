@@ -140,7 +140,7 @@ creating an Xcode template for creating views.
 
 ## Auto layout constraints
 
-Adding additional constraints can quickly land you in a situation where your layout constraints are ambiguous. One way to tackle this issue is to gather all your views constraints into an array, and at the top of your setup method, you simply set these constraints to be deactivated. That way you can add additional constraints by continuing to inject, and the latest pair is the only ones that will be active and in use.
+Adding additional constraints can quickly land you in a situation where your layout constraints are ambiguous. One way to tackle this issue is to gather all your views constraints into an array, and at the top of your setup method, you simply set these constraints to be deactivated. That way you can add additional constraints by continuing to inject, and the latest pair are the only ones that will be active and in use.
 
 ```swift
 class CustomView: UIView {
