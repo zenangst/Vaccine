@@ -11,12 +11,12 @@
 
 <img src="https://github.com/zenangst/Vaccine/blob/master/Images/Vaccine.png?raw=true" alt="Vaccine Icon" align="right" />
 
-Vaccine is a framework that aims to make your apps immune to recompile-decease.  Vaccine provides a straightforward way to make your application ready for code injection, also known as hot reloading. It provides extensions on application delegates, NSObject and view controllers.
+Vaccine is a framework that aims to make your apps immune to recompile-decease. Vaccine provides a straightforward way to make your application ready for code injection, also known as hot reloading. It provides extensions on application delegates, NSObject and view controllers.
 
-Before you go any further, make sure that you have InjectionIII installed and have understood the core concept for code injection and its limitations.
-For more information about InjectionIII, head over to [https://github.com/johnno1962/InjectionIII](https://github.com/johnno1962/InjectionIII).
+Before you go any further, make sure that you have InjectionIII installed and have understood the core concept for code injection and its limitations. 
+For more information about InjectionIII, head over to  [https://github.com/johnno1962/InjectionIII](https://github.com/johnno1962/InjectionIII).
 
-Vaccine does not cut-out the need to ever recompile, but it opens up for faster iteration and seeing your application change instantly. There will be scenarios where you will simply have to recompile your application in order to see the changes appear. Worth noting is that code injection only works in the simulator and has no effect when running it on a device.
+Vaccine does not cut-out the need to ever recompile, but it opens up for faster iteration and seeing your application change instantly. There will be scenarios where you will have to recompile your application to see the changes appear. Worth noting is that code injection only works in the simulator and has no effect when running it on a device.
 
 For additional information about how you can incorporate injection into your workflow, check out this [Medium post](https://medium.com/@robnorback/the-secret-to-1-second-compile-times-in-xcode-9de4ec8345a1).
 
@@ -26,11 +26,11 @@ The following examples are not meant to be best practices or the defacto way of 
 
 ### General tips
 
-To get the most bang for the buck, your view controllers should be implemented with dependency injection, that way you can provide dummy material that is relevant to your current context. This works well when you want to try out different states of your user interface.
+To get the most bang for the buck, your view controllers should be implemented with dependency injection, that way you can provide dummy material that is relevant to your current context. It works well when you want to try out different states of your user interface.
 
 ### Loading the injection bundle
 
-For InjectionIII to work, you need to load the bundle that is located inside the application bundle. You want to do this as early as possible, preferably as soon as your application is done launching.
+For InjectionIII to work, you need to load the bundle located inside the application bundle. You want to do this as early as possible, preferably as soon as your application is done launching.
 
 ```swift
 // Loads the injection bundle and registers 
@@ -41,7 +41,7 @@ Injection.load(self.applicationDidLoad)
 
 ### Application delegate
 
-To get the most out of code injection, you need be able to provide your application with a new instance of the class that you are injecting. A good point of entire for injecting code is to reinitialize your application at the application delegate level. It that increases the likely-hood of getting the desired effect of code injection as your root objects are recreated using the newly injected code. It also provides with a point of entry for displaying the target view controller(s) that you are modifying. So what it means in practice is that you can push or present the relevant view controller directly from your application delegate cutting out the need to manually recreating the view controller stack by manually navigating to the view controller you are editing. This is very similar to how playground-driven works, without having to wait for the playground to load or recompile your app as a framework.
+To get the most out of code injection, you need be able to provide your application with a new instance of the class that you are injecting. A good point of entry for injecting code is to reinitialize your app at the application delegate level. It that increases the likely-hood of getting the desired effect of code injection as your root objects are recreated using the newly injected code. It also provides with a point of entry for displaying the target view controller(s) that you are modifying. So what it means in practice is that you can push or present the relevant view controller directly from your application delegate cutting out the need to manually recreating the view controller stack by manually navigating to the view controller you are editing. Working with InjectionIII is very similar to how playground-driven works, without having to wait for the playground to load or recompile your app as a framework.
 
 ```swift
 @UIApplicationMain
@@ -70,23 +70,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 ```
 
-When code is injected, `applicationDidLoad` will be invoked.
-It cleans and recreates the entire view heirarcy by creating a new window.
+When the code gets injected, `applicationDidLoad` will be invoked. It cleans and recreates the entire view hierarchy by creating a new window.
 
 ### View controllers
 
 Injecting view controllers is really where InjectionIII shines the most. Vaccine provides extensions to make this easy to setup and maintain. When injection notifications come in, Vaccine will filter out view controllers that do not fill the criteria for being reloaded. It checks if the current view controller belongs to a child view controller, if that turns out to be true, then it will reload the parent view controller to make sure that all necessary controllers are notified about the change.
 
-When a view controller is injected it will do the following:
+When injecting a view controller, the following things will happen:
 
 - Removes the current injection observer
-- Remove child view controllers
 - Remove views and layers
-- Invoked viewDidLoad to properly set up your view controller again
+- Invokes `viewDidLoad` to correctly set up your view controller again
 - Invokes layout related methods on all available subviews of the controller's view.
 - Invoke sizeToFit on all views that haven't received a size
 
-What you need to do in your view controllers is to listen to the incoming notifications and deregister when it is time to deallocate. Registering should be done in `viewDidLoad` as the notification will temporarily be removed during injection.
+What you need to do in your view controllers is to listen to the incoming notifications and deregister when it is time to deallocate. Registering should be done in `viewDidLoad` as the observer will temporarily be removed during injection.
 
 ```swift
 class ViewController: UIViewController {
@@ -102,8 +100,7 @@ class ViewController: UIViewController {
 }
 ```
 
-When a view controller gets injected, it will invoke everything inside `viewDidLoad`,
-so any changes that you make to the controller should be rendered on screen.
+When a view controller gets injected, it will invoke everything inside viewDidLoad, so any changes that you make to the controller should be rendered on screen.
 
 ## Views
 
