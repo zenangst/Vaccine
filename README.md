@@ -44,9 +44,6 @@ Injection.load(self.applicationDidLoad)
 To get the most out of code injection, you need be able to provide your application with a new instance of the class that you are injecting. A good point of entire for injecting code is to reinitialize your application at the application delegate level. It that increases the likely-hood of getting the desired effect of code injection as your root objects are recreated using the newly injected code. It also provides with a point of entry for displaying the target view controller(s) that you are modifying. So what it means in practice is that you can push or present the relevant view controller directly from your application delegate cutting out the need to manually recreating the view controller stack by manually navigating to the view controller you are editing. This is very similar to how playground-driven works, without having to wait for the playground to load or recompile your app as a framework.
 
 ```swift
-import UIKit
-import Vaccine
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -107,6 +104,54 @@ class ViewController: UIViewController {
 
 When a view controller gets injected, it will invoke everything inside `viewDidLoad`,
 so any changes that you make to the controller should be rendered on screen.
+
+## Views
+
+Injection views are similar to view controllers, except that they don't have a conventional method that you override to build your custom implementation. Usually, you do everything inside the initializer. To make your view injection friendly, you should move the implementation from the initializer into a separate method that you can call whenever that view's class is injected.
+
+```swift
+class CustomView: UIView {
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    addInjection(with: #selector(injected(_:)))
+    loadView()
+  }
+
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  deinit {
+    removeInjection()
+  }
+
+  private func loadView() {
+    // Your code goes here.
+  }
+
+  @objc open func injected(_ notification: Notification) {
+    loadView()
+  }
+}
+```
+
+If you feel like this is a lot of code to write for all views that you create, I recommend
+creating an Xcode template for creating views.
+
+## Auto layout constraints
+
+Adding additional constraints can quickly land you in a situation where your layout constraints are ambiguous. One way to tackle this issue is to gather all your views constraints into an array, and at the top of your setup method, you simply set these constraints to be deactivated. That way you can add additional constraints by continuing to inject, and the latest pair is the only ones that will be active and in use.
+
+```swift
+class CustomView: UIView {
+  private var layoutConstraints = [NSLayoutConstraint]()
+  
+  private func loadView() {
+    NSLayoutConstraint.deactivate(layoutConstraints)
+    // Your code goes here.
+  }
+}
+```
 
 
 ## Installation
