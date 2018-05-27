@@ -4,16 +4,21 @@ import Vaccine
 class ViewControllerTests: XCTestCase {
   let utilities = Utilities()
 
-  class ViewControllerMock: ViewController {}
+  class ViewControllerMock: UIViewController {}
 
-  class ParentViewControllerMock: ViewController {
+  class ParentViewControllerMock: UIViewController {
     lazy var dummyView = UIView()
     lazy var dummyLayer = CALayer()
     lazy var childViewController = ViewControllerMock()
     var timesInvoked: Int = 0
 
+    deinit {
+      removeInjection()
+    }
+
     override func viewDidLoad() {
       super.viewDidLoad()
+      addInjection(with: #selector(injected(_:)))
       view.addSubview(dummyView)
       view.layer.addSublayer(dummyLayer)
       addChildViewController(childViewController)
