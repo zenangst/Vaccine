@@ -83,7 +83,6 @@ Injecting view controllers is really where InjectionIII shines the most. Vaccine
 When a view controller is injected it will do the following:
 
 - Removes the current injection observer
-- Remove child view controllers
 - Remove views and layers
 - Invoked viewDidLoad to properly set up your view controller again
 - Invokes layout related methods on all available subviews of the controller's view.
