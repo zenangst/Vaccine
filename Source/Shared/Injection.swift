@@ -19,6 +19,10 @@ public class Injection {
       #else
         Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/tvOSInjection.bundle")?.load()
       #endif
+    #else
+      #if os(macOS)
+        Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle")
+      #endif
     #endif
 
     closure?()
