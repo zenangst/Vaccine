@@ -15,13 +15,13 @@ public class Injection {
 
     #if targetEnvironment(simulator)
       #if os(iOS)
-        Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle")?.load()
+        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle")?.load()
       #else
-        Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/tvOSInjection.bundle")?.load()
+        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/tvOSInjection.bundle")?.load()
       #endif
     #else
       #if os(macOS)
-        Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle")
+        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle")
       #endif
     #endif
 
