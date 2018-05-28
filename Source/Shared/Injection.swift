@@ -41,6 +41,20 @@ public class Injection {
     notificationCenter.removeObserver(observer)
   }
 
+  static func object(from notification: Notification) -> NSObject? {
+    return (notification.object as? NSArray)?.firstObject as? NSObject
+  }
+
+  public static func objectWasInjected(_ object: AnyObject, notification: Notification) -> Bool {
+    var result = (notification.object as? NSObject)?.classForCoder == object.classForCoder
+
+    if result == false {
+      result = Injection.object(from: notification)?.classForCoder == object.classForCoder
+    }
+
+    return result
+  }
+
   public static func add(observer: Any, with selector: Selector) {
     addObserver(observer,
                 name: "INJECTION_BUNDLE_NOTIFICATION",
