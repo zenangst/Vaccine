@@ -30,11 +30,19 @@ import UIKit
     return shouldRespondToInjection
   }
 
+  private func removeChildViewControllers() {
+    childViewControllers.forEach {
+      $0.view.removeFromSuperview()
+      $0.removeFromParentViewController()
+    }
+  }
+
   private func viewDidLoadIfNeeded(_ notification: Notification) {
     guard Injection.isLoaded else { return }
     guard viewControllerWasInjected(notification) else { return }
 
     NotificationCenter.default.removeObserver(self)
+    removeChildViewControllers()
     removeViewsAndLayers()
     viewDidLoad()
     view.subviews.forEach {
