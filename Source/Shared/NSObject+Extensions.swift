@@ -11,8 +11,9 @@ public extension NSObject {
                                    object: object)
   }
   
-  func addInjection(with selector: Selector) {
+  func addInjection(with selector: Selector, invoke closure: (() -> Void)? = nil) {
     addObserver(name: "INJECTION_BUNDLE_NOTIFICATION",
                 selector: selector)
+    closure?()
   }
 }
