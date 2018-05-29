@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   @objc open func injected(_ notification: Notification) {
     applicationDidLoad()
-    // Add your view heirarcy creation here.
+    // Add your view hierarchy creation here.
   }
 
   private func applicationDidLoad() {
