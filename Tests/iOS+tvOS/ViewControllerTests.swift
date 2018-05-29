@@ -12,10 +12,6 @@ class ViewControllerTests: XCTestCase {
     lazy var childViewController = ViewControllerMock()
     var timesInvoked: Int = 0
 
-    deinit {
-      removeInjection()
-    }
-
     override func viewDidLoad() {
       super.viewDidLoad()
       addInjection(with: #selector(injected(_:)))
