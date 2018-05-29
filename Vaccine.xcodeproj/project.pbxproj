@@ -13,7 +13,6 @@
 		BD5FC7F120B8054500A08D21 /* InjectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5FC7EE20B8054500A08D21 /* InjectionTests.swift */; };
 		BD5FC7F320B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5FC7F220B80D8500A08D21 /* UIViewController+Extensions.swift */; };
 		BD5FC7F420B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5FC7F220B80D8500A08D21 /* UIViewController+Extensions.swift */; };
-		BD5FC7F520B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5FC7F220B80D8500A08D21 /* UIViewController+Extensions.swift */; };
 		BD6AC87220B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6AC87120B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift */; };
 		BD6AC87320B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6AC87120B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift */; };
 		BD6AC87520B6D5ED00CBE8BA /* NSApplicationDelegate+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6AC87420B6D5ED00CBE8BA /* NSApplicationDelegate+Extensions.swift */; };
@@ -585,7 +584,6 @@
 				BD5FC7F120B8054500A08D21 /* InjectionTests.swift in Sources */,
 				BD6F516620B74455001E113B /* UIApplicationDelegateTests.swift in Sources */,
 				BD6F516920B74475001E113B /* ViewControllerTests.swift in Sources */,
-				BD5FC7F520B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */,
 				D284B1441F7908B100D94AF3 /* NSObjectTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
