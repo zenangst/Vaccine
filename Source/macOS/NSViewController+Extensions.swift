@@ -2,11 +2,10 @@ import Cocoa
 
 @objc public extension NSViewController {
   private func viewControllerWasInjected(_ notification: Notification) -> Bool {
-    if (notification.object as? NSObject)?.classForCoder == self.classForCoder {
+    if Injection.objectWasInjected(self, notification: notification) {
       return true
     }
-
-    guard let object = ((notification.object as? NSArray)?.firstObject as? NSObject) else {
+    guard let object = Injection.object(from: notification) else {
       return false
     }
 

@@ -2,6 +2,11 @@ import Foundation
 
 public class Injection {
   static var isLoaded: Bool {
+    // Check if tests are running.
+    if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
+      return true
+    }
+
     return !Bundle.allBundles.filter {
       $0.bundleURL
         .lastPathComponent
@@ -15,9 +20,13 @@ public class Injection {
 
     #if targetEnvironment(simulator)
       #if os(iOS)
-        Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle")?.load()
+        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle")?.load()
       #else
-        Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/tvOSInjection.bundle")?.load()
+        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/tvOSInjection.bundle")?.load()
+      #endif
+    #else
+      #if os(macOS)
+        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle")
       #endif
     #endif
 
@@ -39,6 +48,20 @@ public class Injection {
 
   private static func removeObserver(_ observer: Any, notificationCenter: NotificationCenter = .default) {
     notificationCenter.removeObserver(observer)
+  }
+
+  static func object(from notification: Notification) -> NSObject? {
+    return (notification.object as? NSArray)?.firstObject as? NSObject
+  }
+
+  public static func objectWasInjected(_ object: AnyObject, notification: Notification) -> Bool {
+    var result = (notification.object as? NSObject)?.classForCoder == object.classForCoder
+
+    if result == false {
+      result = Injection.object(from: notification)?.classForCoder == object.classForCoder
+    }
+
+    return result
   }
 
   public static func add(observer: Any, with selector: Selector) {
