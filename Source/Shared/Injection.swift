@@ -2,6 +2,11 @@ import Foundation
 
 public class Injection {
   static var isLoaded: Bool {
+    // Check if tests are running.
+    if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
+      return true
+    }
+
     return !Bundle.allBundles.filter {
       $0.bundleURL
         .lastPathComponent
