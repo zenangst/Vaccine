@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "Vaccine"
   s.summary          = "Make your apps immune to recompile-decease."
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.homepage         = "https://github.com/zenangst/Vaccine"
   s.license          = 'MIT'
   s.author           = { "Christoffer Winterkvist" => "christoffer@winterkvist.com" }
