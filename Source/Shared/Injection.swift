@@ -46,10 +46,6 @@ public class Injection {
                                    object: object)
   }
 
-  private static func removeObserver(_ observer: Any, notificationCenter: NotificationCenter = .default) {
-    notificationCenter.removeObserver(observer)
-  }
-
   static func object(from notification: Notification) -> NSObject? {
     return (notification.object as? NSArray)?.firstObject as? NSObject
   }
@@ -68,10 +64,6 @@ public class Injection {
     addObserver(observer,
                 name: "INJECTION_BUNDLE_NOTIFICATION",
                 selector: selector)
-  }
-
-  public static func remove(observer: Any) {
-    removeObserver(observer)
   }
 }
 

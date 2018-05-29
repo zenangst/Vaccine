@@ -88,10 +88,6 @@ What you need to do in your view controllers is to listen to the incoming notifi
 
 ```swift
 class ViewController: UIViewController {
-  deinit {
-    Injection.remove(observer: self)
-  }
-
   override func viewDidLoad() {
     super.viewDidLoad()
     Injection.add(observer: self, with: #selector(injected(_:)))
@@ -116,10 +112,6 @@ class CustomView: UIView {
 
   required init?(coder aDecoder: NSCoder) {
     fatalError("init(coder:) has not been implemented")
-  }
-
-  deinit {
-    removeInjection()
   }
 
   private func loadView() {

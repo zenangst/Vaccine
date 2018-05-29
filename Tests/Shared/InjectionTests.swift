@@ -19,7 +19,6 @@ class InjectionTests: XCTestCase {
     Injection.add(observer: object, with: #selector(MockedObject.injected(_:)))
     utilities.triggerInjection()
     XCTAssertTrue(object.injectionInvoked)
-    object.removeInjection()
   }
 
   func testInjectionValidation() {

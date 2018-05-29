@@ -15,8 +15,4 @@ public extension NSObject {
     addObserver(name: "INJECTION_BUNDLE_NOTIFICATION",
                 selector: selector)
   }
-  
-  func removeInjection(notificationCenter: NotificationCenter = .default) {
-    notificationCenter.removeObserver(self)
-  }
 }

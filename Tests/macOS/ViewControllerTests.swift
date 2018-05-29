@@ -17,10 +17,6 @@ class ViewControllerTests: XCTestCase {
     lazy var childViewController = ViewControllerMock()
     var timesInvoked: Int = 0
 
-    deinit {
-      Injection.remove(observer: self)
-    }
-
     override func loadView() {
       self.view = NSView()
       self.view.wantsLayer = true
