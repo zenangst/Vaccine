@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD4B8C4A20C860CB00836815 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B8C4920C860CB00836815 /* TypeAlias.swift */; };
+		BD4B8C4B20C860CB00836815 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B8C4920C860CB00836815 /* TypeAlias.swift */; };
+		BD4B8C4C20C860CB00836815 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B8C4920C860CB00836815 /* TypeAlias.swift */; };
 		BD592EB820B837BB006DE955 /* NSViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD592EB720B837BB006DE955 /* NSViewController+Extensions.swift */; };
 		BD5FC7EF20B8054500A08D21 /* InjectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5FC7EE20B8054500A08D21 /* InjectionTests.swift */; };
 		BD5FC7F020B8054500A08D21 /* InjectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5FC7EE20B8054500A08D21 /* InjectionTests.swift */; };
@@ -68,6 +71,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD4B8C4920C860CB00836815 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		BD592EB720B837BB006DE955 /* NSViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSViewController+Extensions.swift"; sourceTree = "<group>"; };
 		BD5FC7EE20B8054500A08D21 /* InjectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionTests.swift; sourceTree = "<group>"; };
 		BD5FC7F220B80D8500A08D21 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -267,6 +271,7 @@
 			children = (
 				BD6F516A20B7D6BA001E113B /* Injection.swift */,
 				BD6AC87620B6D61B00CBE8BA /* NSObject+Extensions.swift */,
+				BD4B8C4920C860CB00836815 /* TypeAlias.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -573,6 +578,7 @@
 				BD6AC87320B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift in Sources */,
 				BD5FC7F420B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */,
 				BD6AC87920B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
+				BD4B8C4C20C860CB00836815 /* TypeAlias.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -603,6 +609,7 @@
 				BD6AC87220B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift in Sources */,
 				BD5FC7F320B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */,
 				BD6AC87720B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
+				BD4B8C4A20C860CB00836815 /* TypeAlias.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +634,7 @@
 				BD592EB820B837BB006DE955 /* NSViewController+Extensions.swift in Sources */,
 				BD6AC87520B6D5ED00CBE8BA /* NSApplicationDelegate+Extensions.swift in Sources */,
 				BD6AC87820B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
+				BD4B8C4B20C860CB00836815 /* TypeAlias.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
