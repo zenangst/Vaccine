@@ -1,6 +1,10 @@
 import Foundation
 
 public class Injection {
+  static var resourcePath: String {
+    return "/Applications/InjectionIII.app/Contents/Resources"
+  }
+
   static var isLoaded: Bool {
     // Check if tests are running.
     if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
@@ -20,13 +24,13 @@ public class Injection {
 
     #if targetEnvironment(simulator)
       #if os(iOS)
-        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle")?.load()
+        _ = Bundle(path: "\(Injection.resourcePath)/iOSInjection.bundle")?.load()
       #else
-        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/tvOSInjection.bundle")?.load()
+        _ = Bundle(path: "\(Injection.resourcePath)/tvOSInjection.bundle")?.load()
       #endif
     #else
       #if os(macOS)
-        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/macOSInjection.bundle")
+        _ = Bundle(path: "\(Injection.resourcePath)/macOSInjection.bundle")
       #endif
     #endif
 

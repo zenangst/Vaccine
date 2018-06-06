@@ -6,9 +6,9 @@ public extension UIApplicationDelegate {
 
     #if targetEnvironment(simulator)
       #if os(iOS)
-        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/iOSInjection.bundle")?.load()
+        _ = Bundle(path: "\(Injection.resourcePath)/iOSInjection.bundle")?.load()
       #else
-        _ = Bundle(path: "/Applications/InjectionIII.app/Contents/Resources/tvOSInjection.bundle")?.load()
+        _ = Bundle(path: "\(Injection.resourcePath)/tvOSInjection.bundle")?.load()
       #endif
     #endif
 
