@@ -37,9 +37,12 @@ import Cocoa
     removeChildViewControllers()
     removeViewsAndLayers()
     viewDidLoad()
-    view.subviews.forEach {
-      $0.layout()
-      $0.display()
+    view.subviews.forEach { view in
+      view.layout()
+      view.display()
+
+      (view as? NSTableView)?.reloadData()
+      (view as? NSCollectionView)?.reloadData()
     }
   }
 

@@ -44,10 +44,13 @@ import UIKit
     removeChildViewControllers()
     removeViewsAndLayers()
     viewDidLoad()
-    view.subviews.forEach {
-      $0.setNeedsLayout()
-      $0.layoutIfNeeded()
-      $0.setNeedsDisplay()
+    view.subviews.forEach { view in
+      view.setNeedsLayout()
+      view.layoutIfNeeded()
+      view.setNeedsDisplay()
+
+      (view as? UICollectionView)?.reloadData()
+      (view as? UITableView)?.reloadData()
     }
 
     view.subviews.filter({ $0.frame.size == .zero }).forEach {
