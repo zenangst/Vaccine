@@ -54,6 +54,10 @@ public class Injection {
     return (notification.object as? NSArray)?.firstObject as? NSObject
   }
 
+  public static func addViewController(_ viewController: ViewController) {
+    viewController.addInjection(with: #selector(ViewController.injected(_:)))
+  }
+
   public static func objectWasInjected(_ object: AnyObject, notification: Notification) -> Bool {
     var result = (notification.object as? NSObject)?.classForCoder == object.classForCoder
 
