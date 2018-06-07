@@ -8,22 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		56A684A9654C72508C1D4EEC /* Pods_VaccineDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23137647C06FB36B6E2B46DD /* Pods_VaccineDemo.framework */; };
+		BD2EDEDC20C9166E00AECF8F /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2EDEDB20C9166E00AECF8F /* FlowViewController.swift */; };
+		BD4B8C4E20C8635300836815 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B8C4D20C8635300836815 /* ListViewController.swift */; };
+		BDA0BE5320C13F6E00FA0BA8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0BE5220C13F6E00FA0BA8 /* DetailViewController.swift */; };
+		BDA0BE5520C1432A00FA0BA8 /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0BE5420C1432A00FA0BA8 /* ListDataSource.swift */; };
+		BDA0BE5720C1434D00FA0BA8 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0BE5620C1434D00FA0BA8 /* Contact.swift */; };
+		BDA0BE6020C1442000FA0BA8 /* ListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0BE5F20C1442000FA0BA8 /* ListTableViewCell.swift */; };
 		D5C7F74E1C3BC9CE008CDDBA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D5C7F74C1C3BC9CE008CDDBA /* LaunchScreen.storyboard */; };
 		D5C7F75B1C3BCA1E008CDDBA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5C7F7571C3BCA1E008CDDBA /* Assets.xcassets */; };
 		D5C7F75C1C3BCA1E008CDDBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C7F7591C3BCA1E008CDDBA /* AppDelegate.swift */; };
-		D5C7F75D1C3BCA1E008CDDBA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C7F75A1C3BCA1E008CDDBA /* ViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		23137647C06FB36B6E2B46DD /* Pods_VaccineDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_VaccineDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A99CE82208A948B2E4FA92C /* Pods-VaccineDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaccineDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VaccineDemo/Pods-VaccineDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		87F7ED0588A9877E042005C8 /* Pods-VaccineDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaccineDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VaccineDemo/Pods-VaccineDemo.release.xcconfig"; sourceTree = "<group>"; };
+		BD2EDEDB20C9166E00AECF8F /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
+		BD4B8C4D20C8635300836815 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		BDA0BE5220C13F6E00FA0BA8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		BDA0BE5420C1432A00FA0BA8 /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
+		BDA0BE5620C1434D00FA0BA8 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
+		BDA0BE5F20C1442000FA0BA8 /* ListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListTableViewCell.swift; sourceTree = "<group>"; };
 		D5C7F7401C3BC9CE008CDDBA /* VaccineDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VaccineDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5C7F74D1C3BC9CE008CDDBA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D5C7F74F1C3BC9CE008CDDBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D5C7F7571C3BCA1E008CDDBA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D5C7F7591C3BCA1E008CDDBA /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D5C7F75A1C3BCA1E008CDDBA /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,48 @@
 				23137647C06FB36B6E2B46DD /* Pods_VaccineDemo.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BDA0BE5820C143A200FA0BA8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				BDA0BE5220C13F6E00FA0BA8 /* DetailViewController.swift */,
+				BD4B8C4D20C8635300836815 /* ListViewController.swift */,
+				BD2EDEDB20C9166E00AECF8F /* FlowViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		BDA0BE5920C143A900FA0BA8 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				D5C7F7591C3BCA1E008CDDBA /* AppDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		BDA0BE5A20C143B000FA0BA8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				BDA0BE5620C1434D00FA0BA8 /* Contact.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		BDA0BE5B20C143F500FA0BA8 /* DataSources */ = {
+			isa = PBXGroup;
+			children = (
+				BDA0BE5420C1432A00FA0BA8 /* ListDataSource.swift */,
+			);
+			path = DataSources;
+			sourceTree = "<group>";
+		};
+		BDA0BE5C20C1440200FA0BA8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BDA0BE5F20C1442000FA0BA8 /* ListTableViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D5C7F7371C3BC9CE008CDDBA = {
@@ -103,8 +155,11 @@
 		D5C7F7581C3BCA1E008CDDBA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				D5C7F7591C3BCA1E008CDDBA /* AppDelegate.swift */,
-				D5C7F75A1C3BCA1E008CDDBA /* ViewController.swift */,
+				BDA0BE5C20C1440200FA0BA8 /* Views */,
+				BDA0BE5920C143A900FA0BA8 /* App */,
+				BDA0BE5820C143A200FA0BA8 /* Controllers */,
+				BDA0BE5B20C143F500FA0BA8 /* DataSources */,
+				BDA0BE5A20C143B000FA0BA8 /* Models */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -120,6 +175,7 @@
 				D5C7F73C1C3BC9CE008CDDBA /* Sources */,
 				D5C7F73D1C3BC9CE008CDDBA /* Frameworks */,
 				D5C7F73E1C3BC9CE008CDDBA /* Resources */,
+				C7656F56ECD0CC79BEC11EC9 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -137,7 +193,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0720;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Hyper Interaktiv AS";
 				TargetAttributes = {
 					D5C7F73F1C3BC9CE008CDDBA = {
@@ -195,6 +251,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		C7656F56ECD0CC79BEC11EC9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-VaccineDemo/Pods-VaccineDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Vaccine/Vaccine.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Vaccine.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-VaccineDemo/Pods-VaccineDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -202,8 +276,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D5C7F75D1C3BCA1E008CDDBA /* ViewController.swift in Sources */,
+				BD2EDEDC20C9166E00AECF8F /* FlowViewController.swift in Sources */,
+				BDA0BE5320C13F6E00FA0BA8 /* DetailViewController.swift in Sources */,
+				BDA0BE5520C1432A00FA0BA8 /* ListDataSource.swift in Sources */,
+				BD4B8C4E20C8635300836815 /* ListViewController.swift in Sources */,
 				D5C7F75C1C3BCA1E008CDDBA /* AppDelegate.swift in Sources */,
+				BDA0BE5720C1434D00FA0BA8 /* Contact.swift in Sources */,
+				BDA0BE6020C1442000FA0BA8 /* ListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -233,12 +312,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -286,12 +367,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -330,6 +413,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zenangst.VaccineDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -342,6 +427,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.zenangst.VaccineDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ENFORCE_EXCLUSIVE_ACCESS = none;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
