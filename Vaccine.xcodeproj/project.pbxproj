@@ -33,6 +33,8 @@
 		BD6F516B20B7D6BA001E113B /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6F516A20B7D6BA001E113B /* Injection.swift */; };
 		BD6F516C20B7D6BA001E113B /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6F516A20B7D6BA001E113B /* Injection.swift */; };
 		BD6F516D20B7D6BA001E113B /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6F516A20B7D6BA001E113B /* Injection.swift */; };
+		BDEA432620C9216C00CF30A2 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA432520C9216C00CF30A2 /* UIScreen+Extensions.swift */; };
+		BDEA432B20C921B600CF30A2 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA432A20C921B600CF30A2 /* Device.swift */; };
 		D284B1051F79038B00D94AF3 /* Vaccine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D284B0FC1F79038B00D94AF3 /* Vaccine.framework */; };
 		D284B1381F7906DB00D94AF3 /* Info-iOS-Tests.plist in Resources */ = {isa = PBXBuildFile; fileRef = D284B12F1F7906DA00D94AF3 /* Info-iOS-Tests.plist */; };
 		D284B1391F7906DB00D94AF3 /* Info-tvOS-Tests.plist in Resources */ = {isa = PBXBuildFile; fileRef = D284B1301F7906DA00D94AF3 /* Info-tvOS-Tests.plist */; };
@@ -85,6 +87,8 @@
 		BD6F516420B74455001E113B /* UIApplicationDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationDelegateTests.swift; sourceTree = "<group>"; };
 		BD6F516720B74475001E113B /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		BD6F516A20B7D6BA001E113B /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
+		BDEA432520C9216C00CF30A2 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
+		BDEA432A20C921B600CF30A2 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		D284B0FC1F79038B00D94AF3 /* Vaccine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Vaccine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D284B1041F79038B00D94AF3 /* Vaccine-tvOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Vaccine-tvOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D284B1181F79039F00D94AF3 /* Vaccine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Vaccine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -162,6 +166,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		BDEA432920C921AA00CF30A2 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				BDEA432520C9216C00CF30A2 /* UIScreen+Extensions.swift */,
+				BDEA432A20C921B600CF30A2 /* Device.swift */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
 		D284B0F41F79024300D94AF3 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -249,6 +262,7 @@
 		D5C629691C3A809D007F7B7C /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				BDEA432920C921AA00CF30A2 /* iOS */,
 				D5C6296A1C3A809D007F7B7C /* iOS+tvOS */,
 				D284B0F41F79024300D94AF3 /* macOS */,
 				D5C6296E1C3A809D007F7B7C /* Shared */,
@@ -606,9 +620,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD6F516B20B7D6BA001E113B /* Injection.swift in Sources */,
+				BDEA432620C9216C00CF30A2 /* UIScreen+Extensions.swift in Sources */,
 				BD6AC87220B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift in Sources */,
 				BD5FC7F320B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */,
 				BD6AC87720B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
+				BDEA432B20C921B600CF30A2 /* Device.swift in Sources */,
 				BD4B8C4A20C860CB00836815 /* TypeAlias.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
