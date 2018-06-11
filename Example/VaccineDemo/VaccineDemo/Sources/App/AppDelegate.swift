@@ -61,26 +61,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
   
   @objc open func injected(_ notification: Notification) {
-    // Uncommend this to change the device resolution you want to test with.
+    /*
+     TODO: Uncomment line 69 to 70 to change the device resolution you want to test with.
+     This will also reload the application by invoking `loadApp()` which creates a new main window.
+     */
+
 //    screenBounds = UIScreen.device(.iPhoneX(orientation: nil))
-    loadApp()
+//    loadApp()
 
-    guard let flowController = flowController,
-      let listController = listViewController else { return }
+    /*
+     TODO: Uncomment line 76 to 92 to show detail controller on each injection.
+     Animations are temporarely disabled for a better debugging environment.
+     */
 
-    let contact = Contact(firstName: "John",
-                          lastName: "Appleseed",
-                          phoneNumbers: [
-                            "(888) 555-5512",
-                            "(888) 555-1212"],
-                          emails: ["John-Appleseed@mac.com"],
-                          notes: "Some notes"
-    )
-
-    UIView.setAnimationsEnabled(false)
-    flowController.listViewController(listController, didSelect: contact)
-    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-      UIView.setAnimationsEnabled(true)
-    }
+//    guard let flowController = flowController,
+//      let listController = listViewController else { return }
+//
+//    let contact = Contact(firstName: "John",
+//                          lastName: "Appleseed",
+//                          phoneNumbers: [
+//                            "(888) 555-5512",
+//                            "(888) 555-1212"],
+//                          emails: ["John-Appleseed@mac.com"],
+//                          notes: "Some notes"
+//    )
+//
+//    UIView.setAnimationsEnabled(false)
+//    flowController.listViewController(listController, didSelect: contact)
+//    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//      UIView.setAnimationsEnabled(true)
+//    }
   }
 }
