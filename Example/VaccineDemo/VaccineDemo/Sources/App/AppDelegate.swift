@@ -4,8 +4,8 @@ import Vaccine
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
-  var navigationController: UINavigationController?
   var flowController: FlowViewController?
+  var listViewController: ListViewController?
   var screenBounds = UIScreen.main.bounds
 
   func application(_ application: UIApplication,
@@ -16,25 +16,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   private func loadApp() {
     let models = [
-      Contact(firstName: "Foo", lastName: "Bar")
+      Contact(firstName: "John",
+              lastName: "Appleseed",
+              phoneNumbers: [
+                "(888) 555-5512",
+                "(888) 555-1212"],
+              emails: ["John-Appleseed@mac.com"]
+      )
     ]
 
     configureApperance()
     let window = UIWindow(frame: screenBounds)
     window.backgroundColor = .white
     let listViewController = ListViewController(models: models)
-    let flowController = FlowViewController(listViewController: listViewController)
+    let flowController = FlowViewController(rootViewController: listViewController)
+    listViewController.delegate = flowController
     self.flowController = flowController
-    let navigationController = UINavigationController(rootViewController: flowController)
+    self.listViewController = listViewController
     if #available(iOS 11.0, *) {
-      navigationController.navigationBar.prefersLargeTitles = true
+      flowController.navigationBar.prefersLargeTitles = true
     }
-    window.rootViewController = navigationController
+    window.rootViewController = flowController
     window.makeKeyAndVisible()
 
     let completion = {
       self.window = window
-      self.navigationController = navigationController
     }
 
     if let currentWindow = self.window {
@@ -53,17 +59,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UINavigationBar.appearance().tintColor = .blue
   }
   
-    @objc open func injected(_ notification: Notification) {
+  @objc open func injected(_ notification: Notification) {
     // Uncommend this to change the device resolution you want to test with.
-    screenBounds = UIScreen.device(.iPad(orientation: nil))
+//    screenBounds = UIScreen.device(.iPhoneX(orientation: nil))
     loadApp()
 
-//    guard let flowController = flowController else { return }
-//
-//    flowController.listViewController(flowController.listViewController,
-//                                      didSelect: Contact(firstName: "Anthony", lastName: "Stark"))
-//    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//      UIView.setAnimationsEnabled(true)
-//    }
+    guard let flowController = flowController, let listController = listViewController else { return }
+
+    let contact = Contact(firstName: "John",
+                          lastName: "Appleseed",
+                          phoneNumbers: [
+                            "(888) 555-5512",
+                            "(888) 555-1212"],
+                          emails: ["John-Appleseed@mac.com"]
+    )
+
+    UIView.setAnimationsEnabled(false)
+    flowController.listViewController(listController, didSelect: contact)
+    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+      UIView.setAnimationsEnabled(true)
+    }
   }
 }

@@ -2,10 +2,14 @@ import UIKit
 import Vaccine
 
 class DetailViewController: UIViewController {
-  let contact: Contact
+  lazy var tableView = UITableView()
+  let imageSize: CGFloat = 128
+  let dataSource: DetailDataSource
 
-  init(contact: Contact) {
-    self.contact = contact
+  private var layoutConstraints = [NSLayoutConstraint]()
+
+  init(contactDetails: [ContactDetail]) {
+    self.dataSource = DetailDataSource(models: contactDetails)
     super.init(nibName: nil, bundle: nil)
   }
 
@@ -15,16 +19,36 @@ class DetailViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
+    NSLayoutConstraint.deactivate(layoutConstraints)
     Injection.addViewController(self)
-    configureViews()
     configureViewController()
-  }
-
-  private func configureViews() {
-    view.backgroundColor = .white
+    configureTableView()
+    configureConstraints()
   }
 
   private func configureViewController() {
-    title = "\(contact.firstName) \(contact.lastName)"
+    view.backgroundColor = .white
+  }
+
+  private func configureTableView() {
+    tableView.translatesAutoresizingMaskIntoConstraints = false
+    view.addSubview(tableView)
+    tableView.backgroundColor = .white
+    tableView.dataSource = dataSource
+    tableView.register(DetailTableViewCell.self,
+                       forCellReuseIdentifier: DetailTableViewCell.reuseIdentifier)
+    tableView.tableFooterView = UIView()
+
+
+  }
+
+  private func configureConstraints() {
+    var constraints = [NSLayoutConstraint]()
+    constraints.append(tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor))
+    constraints.append(tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor))
+    constraints.append(tableView.topAnchor.constraint(equalTo: view.topAnchor))
+    constraints.append(tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor))
+    layoutConstraints.append(contentsOf: constraints)
+    NSLayoutConstraint.activate(constraints)
   }
 }

@@ -9,7 +9,10 @@
 /* Begin PBXBuildFile section */
 		56A684A9654C72508C1D4EEC /* Pods_VaccineDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 23137647C06FB36B6E2B46DD /* Pods_VaccineDemo.framework */; };
 		BD2EDEDC20C9166E00AECF8F /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2EDEDB20C9166E00AECF8F /* FlowViewController.swift */; };
+		BD3D6A7320CC64B40070A159 /* DetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3D6A7220CC64B40070A159 /* DetailTableViewCell.swift */; };
 		BD4B8C4E20C8635300836815 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B8C4D20C8635300836815 /* ListViewController.swift */; };
+		BD87486520CA615D00FDC47F /* DetailDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD87486420CA615D00FDC47F /* DetailDataSource.swift */; };
+		BD87486720CA622200FDC47F /* ContactDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD87486620CA622200FDC47F /* ContactDetail.swift */; };
 		BDA0BE5320C13F6E00FA0BA8 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0BE5220C13F6E00FA0BA8 /* DetailViewController.swift */; };
 		BDA0BE5520C1432A00FA0BA8 /* ListDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0BE5420C1432A00FA0BA8 /* ListDataSource.swift */; };
 		BDA0BE5720C1434D00FA0BA8 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA0BE5620C1434D00FA0BA8 /* Contact.swift */; };
@@ -24,7 +27,10 @@
 		2A99CE82208A948B2E4FA92C /* Pods-VaccineDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaccineDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-VaccineDemo/Pods-VaccineDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		87F7ED0588A9877E042005C8 /* Pods-VaccineDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-VaccineDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-VaccineDemo/Pods-VaccineDemo.release.xcconfig"; sourceTree = "<group>"; };
 		BD2EDEDB20C9166E00AECF8F /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
+		BD3D6A7220CC64B40070A159 /* DetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailTableViewCell.swift; sourceTree = "<group>"; };
 		BD4B8C4D20C8635300836815 /* ListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
+		BD87486420CA615D00FDC47F /* DetailDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDataSource.swift; sourceTree = "<group>"; };
+		BD87486620CA622200FDC47F /* ContactDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetail.swift; sourceTree = "<group>"; };
 		BDA0BE5220C13F6E00FA0BA8 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		BDA0BE5420C1432A00FA0BA8 /* ListDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListDataSource.swift; sourceTree = "<group>"; };
 		BDA0BE5620C1434D00FA0BA8 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
@@ -87,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				BDA0BE5620C1434D00FA0BA8 /* Contact.swift */,
+				BD87486620CA622200FDC47F /* ContactDetail.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -95,6 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				BDA0BE5420C1432A00FA0BA8 /* ListDataSource.swift */,
+				BD87486420CA615D00FDC47F /* DetailDataSource.swift */,
 			);
 			path = DataSources;
 			sourceTree = "<group>";
@@ -103,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				BDA0BE5F20C1442000FA0BA8 /* ListTableViewCell.swift */,
+				BD3D6A7220CC64B40070A159 /* DetailTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -155,11 +164,11 @@
 		D5C7F7581C3BCA1E008CDDBA /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				BDA0BE5C20C1440200FA0BA8 /* Views */,
 				BDA0BE5920C143A900FA0BA8 /* App */,
 				BDA0BE5820C143A200FA0BA8 /* Controllers */,
 				BDA0BE5B20C143F500FA0BA8 /* DataSources */,
 				BDA0BE5A20C143B000FA0BA8 /* Models */,
+				BDA0BE5C20C1440200FA0BA8 /* Views */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -280,9 +289,12 @@
 				BDA0BE5320C13F6E00FA0BA8 /* DetailViewController.swift in Sources */,
 				BDA0BE5520C1432A00FA0BA8 /* ListDataSource.swift in Sources */,
 				BD4B8C4E20C8635300836815 /* ListViewController.swift in Sources */,
+				BD87486720CA622200FDC47F /* ContactDetail.swift in Sources */,
 				D5C7F75C1C3BCA1E008CDDBA /* AppDelegate.swift in Sources */,
 				BDA0BE5720C1434D00FA0BA8 /* Contact.swift in Sources */,
 				BDA0BE6020C1442000FA0BA8 /* ListTableViewCell.swift in Sources */,
+				BD3D6A7320CC64B40070A159 /* DetailTableViewCell.swift in Sources */,
+				BD87486520CA615D00FDC47F /* DetailDataSource.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
