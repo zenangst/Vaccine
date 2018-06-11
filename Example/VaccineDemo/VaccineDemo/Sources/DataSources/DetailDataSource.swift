@@ -21,9 +21,18 @@ class DetailDataSource: NSObject, UITableViewDataSource {
                                              for: indexPath)
 
     if let view = cell as? DetailTableViewCell {
-      let contact = model(at: indexPath)
-      view.textLabel?.text = "Foo"
-      view.detailTextLabel?.text = "Bar"
+      let contactDetail = model(at: indexPath)
+
+      switch contactDetail.kind {
+      case .info:
+        view.textLabel?.text = "Info"
+      case .email:
+        view.textLabel?.text = "Email"
+      case .phone:
+        view.textLabel?.text = "Phone"
+      }
+
+      view.detailTextLabel?.text = contactDetail.value
     }
 
     return cell

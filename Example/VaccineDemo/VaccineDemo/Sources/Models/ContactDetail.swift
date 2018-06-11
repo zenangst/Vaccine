@@ -2,7 +2,7 @@ import Foundation
 
 struct ContactDetail {
   enum Kind {
-    case email, phone
+    case info, email, phone
   }
 
   let value: String

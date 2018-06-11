@@ -39,12 +39,8 @@ class ListDataSource: NSObject, UITableViewDataSource {
         listCell.avatarNameLabel.text?.append(first)
       }
 
-
       listCell.nameLabel.text = "\(model.firstName) \(model.lastName)"
     }
-
     return cell
   }
-
-
 }

@@ -21,7 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
               phoneNumbers: [
                 "(888) 555-5512",
                 "(888) 555-1212"],
-              emails: ["John-Appleseed@mac.com"]
+              emails: ["John-Appleseed@mac.com"],
+              notes: "Some notes"
       )
     ]
 
@@ -64,14 +65,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //    screenBounds = UIScreen.device(.iPhoneX(orientation: nil))
     loadApp()
 
-    guard let flowController = flowController, let listController = listViewController else { return }
+    guard let flowController = flowController,
+      let listController = listViewController else { return }
 
     let contact = Contact(firstName: "John",
                           lastName: "Appleseed",
                           phoneNumbers: [
                             "(888) 555-5512",
                             "(888) 555-1212"],
-                          emails: ["John-Appleseed@mac.com"]
+                          emails: ["John-Appleseed@mac.com"],
+                          notes: "Some notes"
     )
 
     UIView.setAnimationsEnabled(false)
