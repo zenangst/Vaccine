@@ -53,14 +53,9 @@ class ListTableViewCell: UITableViewCell {
   }
 
   private func configureConstraints() {
-    contentView.translatesAutoresizingMaskIntoConstraints = false
     contentView.subviews.forEach { $0.translatesAutoresizingMaskIntoConstraints = false }
 
     var constraints = [NSLayoutConstraint]()
-    constraints.append(contentView.leadingAnchor.constraint(equalTo: leadingAnchor))
-    constraints.append(contentView.trailingAnchor.constraint(equalTo: trailingAnchor))
-    constraints.append(contentView.topAnchor.constraint(equalTo: topAnchor))
-    constraints.append(contentView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -1))
     constraints.append(avatarImageView.centerYAnchor.constraint(equalTo: contentView.centerYAnchor))
     constraints.append(avatarImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20))
     constraints.append(avatarImageView.widthAnchor.constraint(equalToConstant: imageSize))
