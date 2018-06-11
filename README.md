@@ -24,6 +24,18 @@ For additional information about how you can incorporate injection into your wor
 
 The following examples are not meant to be best practices or the defacto way of doing code injection. The examples are based on personal experiences when working on projects that use InjectionIII.
 
+### Example project
+
+The easiest way to try Vaccine with InjectionIII is to run the example project.   
+Follow the steps below:
+
+1. Install InjectionIII from the [Mac App Store](https://itunes.apple.com/no/app/injectioniii/id1380446739?mt=12)
+2. `git clone git@github.com:zenangst/Vaccine.git`
+3. Run `pod install` in `Example/VaccineDemo/`
+4. Open and run `VaccineDemo.xcworkspace`
+5. Select the demo project when `InjectionIII` wants you to select a folder.
+6. Start having fun 🤩
+
 ### General tips
 
 To get the most bang for the buck, your view controllers should be implemented with dependency injection, that way you can provide dummy material that is relevant to your current context. It works well when you want to try out different states of your user interface.
