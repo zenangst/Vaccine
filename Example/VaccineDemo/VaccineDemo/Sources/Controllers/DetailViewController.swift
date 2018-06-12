@@ -3,7 +3,6 @@ import Vaccine
 
 class DetailViewController: UIViewController {
   lazy var tableView = UITableView()
-  let imageSize: CGFloat = 128
   let dataSource: DetailDataSource
 
   private var layoutConstraints = [NSLayoutConstraint]()
@@ -35,6 +34,7 @@ class DetailViewController: UIViewController {
     view.addSubview(tableView)
     dataSource.tableView = tableView
     tableView.backgroundColor = .white
+    tableView.rowHeight = 60
     tableView.dataSource = dataSource
     tableView.register(DetailTableViewCell.self,
                        forCellReuseIdentifier: DetailTableViewCell.reuseIdentifier)
