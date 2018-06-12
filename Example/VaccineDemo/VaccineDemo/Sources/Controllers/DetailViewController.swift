@@ -33,6 +33,7 @@ class DetailViewController: UIViewController {
   private func configureTableView() {
     tableView.translatesAutoresizingMaskIntoConstraints = false
     view.addSubview(tableView)
+    dataSource.tableView = tableView
     tableView.backgroundColor = .white
     tableView.dataSource = dataSource
     tableView.register(DetailTableViewCell.self,

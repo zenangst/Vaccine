@@ -1,4 +1,5 @@
 import UIKit
+import Vaccine
 
 class DetailDataSource: NSObject, UITableViewDataSource {
   weak var tableView: UITableView?
@@ -6,6 +7,12 @@ class DetailDataSource: NSObject, UITableViewDataSource {
 
   init(models: [ContactDetail]) {
     self.models = models
+    super.init()
+    addInjection(with: #selector(injected(_:)))
+  }
+
+  @objc open func injected(_ notification: Notification) {
+    tableView?.reloadData()
   }
 
   private func model(at indexPath: IndexPath) -> ContactDetail {
