@@ -15,7 +15,6 @@ class ListDataSource: NSObject, UITableViewDataSource {
     guard Injection.objectWasInjected(self, notification: notification) else {
       return
     }
-
     tableView?.reloadData()
   }
 

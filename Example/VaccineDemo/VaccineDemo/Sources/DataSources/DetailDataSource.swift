@@ -12,6 +12,9 @@ class DetailDataSource: NSObject, UITableViewDataSource {
   }
 
   @objc open func injected(_ notification: Notification) {
+    guard Injection.objectWasInjected(self, notification: notification) else {
+      return
+    }
     tableView?.reloadData()
   }
 
