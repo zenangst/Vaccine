@@ -41,8 +41,12 @@ import UIKit
     guard viewControllerWasInjected(notification) else { return }
 
     NotificationCenter.default.removeObserver(self)
-    removeChildViewControllers()
-    removeViewsAndLayers()
+
+    if !(self is UINavigationController) {
+      removeChildViewControllers()
+      removeViewsAndLayers()
+    }
+
     viewDidLoad()
     view.subviews.forEach { view in
       view.setNeedsLayout()
