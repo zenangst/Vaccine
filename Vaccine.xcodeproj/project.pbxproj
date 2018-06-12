@@ -34,6 +34,15 @@
 		BD6F516B20B7D6BA001E113B /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6F516A20B7D6BA001E113B /* Injection.swift */; };
 		BD6F516C20B7D6BA001E113B /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6F516A20B7D6BA001E113B /* Injection.swift */; };
 		BD6F516D20B7D6BA001E113B /* Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6F516A20B7D6BA001E113B /* Injection.swift */; };
+		BD7242C720CFBE760006DCF7 /* Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7242C620CFBE760006DCF7 /* Swizzling.swift */; };
+		BD7242C820CFBE760006DCF7 /* Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7242C620CFBE760006DCF7 /* Swizzling.swift */; };
+		BD7242C920CFBE760006DCF7 /* Swizzling.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7242C620CFBE760006DCF7 /* Swizzling.swift */; };
+		BD7242CB20CFBF080006DCF7 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7242CA20CFBF080006DCF7 /* DispatchQueue.swift */; };
+		BD7242CC20CFBF080006DCF7 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7242CA20CFBF080006DCF7 /* DispatchQueue.swift */; };
+		BD7242CD20CFBF080006DCF7 /* DispatchQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7242CA20CFBF080006DCF7 /* DispatchQueue.swift */; };
+		BD7242CF20CFC0CB0006DCF7 /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7242CE20CFC0CB0006DCF7 /* ViewController+Extensions.swift */; };
+		BD7242D020CFC0CB0006DCF7 /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7242CE20CFC0CB0006DCF7 /* ViewController+Extensions.swift */; };
+		BD7242D120CFC0CB0006DCF7 /* ViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD7242CE20CFC0CB0006DCF7 /* ViewController+Extensions.swift */; };
 		BDEA432620C9216C00CF30A2 /* UIScreen+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA432520C9216C00CF30A2 /* UIScreen+Extensions.swift */; };
 		BDEA432B20C921B600CF30A2 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDEA432A20C921B600CF30A2 /* Device.swift */; };
 		D284B1051F79038B00D94AF3 /* Vaccine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D284B0FC1F79038B00D94AF3 /* Vaccine.framework */; };
@@ -89,6 +98,9 @@
 		BD6F516420B74455001E113B /* UIApplicationDelegateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationDelegateTests.swift; sourceTree = "<group>"; };
 		BD6F516720B74475001E113B /* ViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerTests.swift; sourceTree = "<group>"; };
 		BD6F516A20B7D6BA001E113B /* Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Injection.swift; sourceTree = "<group>"; };
+		BD7242C620CFBE760006DCF7 /* Swizzling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swizzling.swift; sourceTree = "<group>"; };
+		BD7242CA20CFBF080006DCF7 /* DispatchQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchQueue.swift; sourceTree = "<group>"; };
+		BD7242CE20CFC0CB0006DCF7 /* ViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extensions.swift"; sourceTree = "<group>"; };
 		BDEA432520C9216C00CF30A2 /* UIScreen+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScreen+Extensions.swift"; sourceTree = "<group>"; };
 		BDEA432A20C921B600CF30A2 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		D284B0FC1F79038B00D94AF3 /* Vaccine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Vaccine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -294,9 +306,12 @@
 		D5C6296E1C3A809D007F7B7C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BD7242CA20CFBF080006DCF7 /* DispatchQueue.swift */,
 				BD6F516A20B7D6BA001E113B /* Injection.swift */,
 				BD6AC87620B6D61B00CBE8BA /* NSObject+Extensions.swift */,
+				BD7242C620CFBE760006DCF7 /* Swizzling.swift */,
 				BD4B8C4920C860CB00836815 /* TypeAlias.swift */,
+				BD7242CE20CFC0CB0006DCF7 /* ViewController+Extensions.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -601,9 +616,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD6F516D20B7D6BA001E113B /* Injection.swift in Sources */,
+				BD7242C920CFBE760006DCF7 /* Swizzling.swift in Sources */,
 				BD6AC87320B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift in Sources */,
 				BD5FC7F420B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */,
+				BD7242D120CFC0CB0006DCF7 /* ViewController+Extensions.swift in Sources */,
 				BD6AC87920B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
+				BD7242CD20CFBF080006DCF7 /* DispatchQueue.swift in Sources */,
 				BD4B8C4C20C860CB00836815 /* TypeAlias.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -634,10 +652,13 @@
 				BD6F516B20B7D6BA001E113B /* Injection.swift in Sources */,
 				BDEA432620C9216C00CF30A2 /* UIScreen+Extensions.swift in Sources */,
 				BD6AC87220B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift in Sources */,
+				BD7242C720CFBE760006DCF7 /* Swizzling.swift in Sources */,
 				BD5FC7F320B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */,
 				BD6AC87720B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
+				BD7242CF20CFC0CB0006DCF7 /* ViewController+Extensions.swift in Sources */,
 				BDEA432B20C921B600CF30A2 /* Device.swift in Sources */,
 				BD4B8C4A20C860CB00836815 /* TypeAlias.swift in Sources */,
+				BD7242CB20CFBF080006DCF7 /* DispatchQueue.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,9 +681,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD6F516C20B7D6BA001E113B /* Injection.swift in Sources */,
+				BD7242C820CFBE760006DCF7 /* Swizzling.swift in Sources */,
 				BD592EB820B837BB006DE955 /* NSViewController+Extensions.swift in Sources */,
 				BD6AC87520B6D5ED00CBE8BA /* NSApplicationDelegate+Extensions.swift in Sources */,
+				BD7242D020CFC0CB0006DCF7 /* ViewController+Extensions.swift in Sources */,
 				BD6AC87820B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
+				BD7242CC20CFBF080006DCF7 /* DispatchQueue.swift in Sources */,
 				BD4B8C4B20C860CB00836815 /* TypeAlias.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -88,13 +88,21 @@ When the code gets injected, `applicationDidLoad` will be invoked. It cleans and
 
 Injecting view controllers is really where InjectionIII shines the most. Vaccine provides extensions to make this easy to setup and maintain. When injection notifications come in, Vaccine will filter out view controllers that do not fill the criteria for being reloaded. It checks if the current view controller belongs to a child view controller, if that turns out to be true, then it will reload the parent view controller to make sure that all necessary controllers are notified about the change.
 
+**Note**
+Vaccine also supports adding view controller injection using swizzling.
+This feature can be enabled by setting `swizzling` to `true` when loading the bundle.
+
+```swift
+Injection.load(..., swizzling: true)
+```
+
 When injecting a view controller, the following things will happen:
 
 - Removes the current injection observer
 - Remove views and layers
 - Invokes `viewDidLoad` to correctly set up your view controller again
 - Invokes layout related methods on all available subviews of the controller's view.
-- Invoke sizeToFit on all views that haven't received a size
+- Invoke `sizeToFit` on all views that haven't received a size
 
 What you need to do in your view controllers is to listen to the incoming notifications and deregister when it is time to deallocate. Registering should be done in `viewDidLoad` as the observer will temporarily be removed during injection.
 
@@ -176,6 +184,11 @@ github "zenangst/Vaccine"
 ## Author
 
 Christoffer Winterkvist, christoffer@winterkvist.com
+
+## Credits
+
+- [Vadym Markov](https://github.com/vadymmarkov) for giving inspiration to the swizzling feature. [[Source]](https://github.com/vadymmarkov/Fashion/blob/master/Sources/Shared/Swizzler.swift)   
+- [John Holdsworth](https://github.com/johnno1962/InjectionIII) for making runtime code injection possible.
 
 ## Contributing
 
