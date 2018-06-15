@@ -6,7 +6,7 @@ import Cocoa
       return true
     }
     guard let object = Injection.object(from: notification) else {
-      return false
+      return Injection.swizzleViewControllers
     }
 
     var shouldRespondToInjection: Bool = false
