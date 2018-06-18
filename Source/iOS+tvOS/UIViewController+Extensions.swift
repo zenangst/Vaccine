@@ -14,7 +14,12 @@ import UIKit
 
     NotificationCenter.default.removeObserver(self)
 
-    if !(self is UINavigationController) {
+    switch self {
+    case let navigationController as UINavigationController:
+      break
+    case let tabBarController as UITabBarController:
+      tabBarController.setViewControllers([], animated: true)
+    default:
       removeChildViewControllers()
       removeViewsAndLayers()
     }
