@@ -6,10 +6,9 @@
 
 extension ViewController {
   func viewControllerWasInjected(_ notification: Notification) -> Bool {
-    if Injection.swizzleViewControllers { return true }
     if Injection.objectWasInjected(self, notification: notification) { return true }
     guard let object = Injection.object(from: notification) else {
-      return Injection.swizzleViewControllers
+      return false
     }
 
     var shouldRespondToInjection: Bool = false
