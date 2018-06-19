@@ -6,10 +6,9 @@
 
 extension ViewController {
   func viewControllerWasInjected(_ notification: Notification) -> Bool {
-    if Injection.swizzleViewControllers { return true }
     if Injection.objectWasInjected(self, notification: notification) { return true }
     guard let object = Injection.object(from: notification) else {
-      return Injection.swizzleViewControllers
+      return false
     }
 
     var shouldRespondToInjection: Bool = false
@@ -35,8 +34,8 @@ extension ViewController {
   public static func _swizzleViewControllers() {
     #if DEBUG
       DispatchQueue.once(token: "com.zenangst.Vaccine.swizzleViewControllers") {
-        let originalSelector = #selector(viewDidLoad)
-        let swizzledSelector = #selector(vaccine_viewDidLoad)
+        let originalSelector = #selector(loadView)
+        let swizzledSelector = #selector(vaccine_loadView)
         Swizzling.swizzle(ViewController.self,
                           originalSelector: originalSelector,
                           swizzledSelector: swizzledSelector)
@@ -44,8 +43,8 @@ extension ViewController {
     #endif
   }
 
-  @objc func vaccine_viewDidLoad() {
-    vaccine_viewDidLoad()
+  @objc func vaccine_loadView() {
+    vaccine_loadView()
     Injection.addViewController(self)
   }
 }

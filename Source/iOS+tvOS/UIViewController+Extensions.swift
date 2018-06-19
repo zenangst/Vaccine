@@ -12,7 +12,9 @@ import UIKit
     guard Injection.isLoaded else { return }
     guard viewControllerWasInjected(notification) else { return }
 
-    NotificationCenter.default.removeObserver(self)
+    if !Injection.swizzleViewControllers {
+      NotificationCenter.default.removeObserver(self)
+    }
 
     switch self {
     case _ as UINavigationController:
