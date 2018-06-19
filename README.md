@@ -11,7 +11,7 @@
 
 <img src="https://github.com/zenangst/Vaccine/blob/master/Images/Vaccine.png?raw=true" alt="Vaccine Icon" align="right" />
 
-Vaccine is a framework that aims to make your apps immune to recompile-decease. Vaccine provides a straightforward way to make your application ready for code injection, also known as hot reloading. It provides extensions on application delegates, NSObject and view controllers.
+Vaccine is a framework that aims to make your apps immune to recompile-disease. Vaccine provides a straightforward way to make your application ready for code injection, also known as hot reloading. It provides extensions on application delegates, NSObject and view controllers.
 
 Before you go any further, make sure that you have InjectionIII installed and have understood the core concept for code injection and its limitations. 
 For more information about InjectionIII, head over to  [https://github.com/johnno1962/InjectionIII](https://github.com/johnno1962/InjectionIII).
