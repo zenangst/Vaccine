@@ -24,6 +24,6 @@ class InjectionTests: XCTestCase {
   func testInjectionValidation() {
     let object = MockedObject()
     let notification = Notification(name: Notification.Name(rawValue: "MockedNotification"), object: object, userInfo: nil)
-    XCTAssertTrue(Injection.objectWasInjected(object, notification: notification))
+    XCTAssertTrue(Injection.objectWasInjected(object, in: notification))
   }
 }

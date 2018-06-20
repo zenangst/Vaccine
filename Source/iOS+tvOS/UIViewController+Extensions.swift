@@ -10,7 +10,7 @@ import UIKit
 
   private func viewDidLoadIfNeeded(_ notification: Notification) {
     guard Injection.isLoaded else { return }
-    guard viewControllerWasInjected(notification) else { return }
+    guard Injection.viewControllerWasInjected(self, in: notification) else { return }
 
     if !Injection.swizzleViewControllers {
       NotificationCenter.default.removeObserver(self)
