@@ -128,14 +128,41 @@ public class Injection {
   ///   - object: The object that should be used for comparison.
   ///   - notification: The notification that will be used for resolving the object.
   /// - Returns: True if the object matches the object embedded in the notification.
-  public static func objectWasInjected(_ object: AnyObject, notification: Notification) -> Bool {
+  public static func objectWasInjected(_ object: AnyObject, in notification: Notification) -> Bool {
     var result = (notification.object as? NSObject)?.classForCoder == object.classForCoder
 
     if result == false {
-      result = Injection.object(from: notification)?.classForCoder == object.classForCoder
+      let resolvedObject = Injection.object(from: notification)
+      result = resolvedObject?.classForCoder == object.classForCoder
     }
 
     return result
+  }
+
+  static func viewControllerWasInjected(_ viewController: ViewController, in notification: Notification) -> Bool {
+    if objectWasInjected(self, in: notification) { return true }
+    guard let object = object(from: notification) else {
+      return false
+    }
+
+    var shouldRespondToInjection: Bool = false
+
+    /// Check if parent view controller should be injected.
+    if !viewController.childViewControllers.isEmpty {
+      for childViewController in viewController.childViewControllers {
+        if object.classForCoder == childViewController.classForCoder {
+          shouldRespondToInjection = true
+          break
+        }
+      }
+    }
+
+    /// Check if object matches self.
+    if !shouldRespondToInjection {
+      shouldRespondToInjection = object.classForCoder == viewController.classForCoder
+    }
+
+    return shouldRespondToInjection
   }
 
   /// Add InjectionIII notification observer with selection.
