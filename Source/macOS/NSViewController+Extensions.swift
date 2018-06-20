@@ -3,7 +3,7 @@ import Cocoa
 @objc public extension NSViewController {
   private func viewDidLoadIfNeeded(_ notification: Notification) {
     guard Injection.isLoaded else { return }
-    guard viewControllerWasInjected(notification) else { return }
+    guard Injection.viewControllerWasInjected(self, in: notification) else { return }
 
     NotificationCenter.default.removeObserver(self)
     removeChildViewControllers()
