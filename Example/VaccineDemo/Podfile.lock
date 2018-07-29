@@ -1,5 +1,5 @@
 PODS:
-  - Vaccine (0.3.0)
+  - Vaccine (0.3.6)
 
 DEPENDENCIES:
   - Vaccine (from `../../`)
@@ -9,8 +9,8 @@ EXTERNAL SOURCES:
     :path: "../../"
 
 SPEC CHECKSUMS:
-  Vaccine: 5a9b5c9f6e7738f854f9375f9f4abff6ac9fb7bf
+  Vaccine: 1d529018b0826fd778a827b959c3aaa22ed696e1
 
 PODFILE CHECKSUM: ccfaad8b2956e673132268cb7acf21caae3d87a2
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3
