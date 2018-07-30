@@ -76,7 +76,7 @@ public class Injection {
       #endif
     #else
       #if os(macOS)
-        _ = Bundle(path: "\(Injection.resourcePath)/macOSInjection.bundle")
+        _ = Bundle(path: "\(Injection.resourcePath)/macOSInjection.bundle")?.load()
       #endif
     #endif
 
