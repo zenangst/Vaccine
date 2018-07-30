@@ -8,13 +8,20 @@ import UIKit
     }
   }
 
-  private func processScreenUpdates(_ shouldLock: Bool, scrollViews: [UIScrollView: CGPoint]) {
+  private func lockScreenUpdates(_ shouldLock: Bool, scrollViews: [UIScrollView: CGPoint]) {
     guard shouldLock else { return }
     CATransaction.begin()
     CATransaction.lock()
+  }
+
+  private func unlockScreenUpdates(_ shouldUnlock: Bool, scrollViews: [UIScrollView: CGPoint]) {
+    guard shouldUnlock else { return }
     scrollViews.forEach { $0.key.contentOffset = $0.value }
-    CATransaction.unlock()
-    CATransaction.commit()
+    let nearFuture = DispatchTime.now() + 0.3
+    DispatchQueue.main.asyncAfter(deadline: nearFuture) {
+      CATransaction.unlock()
+      CATransaction.commit()
+    }
   }
 
   private func viewDidLoadIfNeeded(_ notification: Notification) {
@@ -29,6 +36,7 @@ import UIKit
     for case let scrollView as UIScrollView in view.subviews {
       scrollViews[scrollView] = scrollView.contentOffset
     }
+    lockScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
 
     switch self {
     case _ as UINavigationController:
@@ -53,7 +61,8 @@ import UIKit
     view.subviews.filter({ $0.frame.size == .zero }).forEach {
       $0.sizeToFit()
     }
-    processScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
+
+    unlockScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
   }
 
   private func removeViewsAndLayers() {
