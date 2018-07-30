@@ -8,12 +8,26 @@ import UIKit
     }
   }
 
+  private func processScreenUpdates(_ shouldLock: Bool, scrollViews: [UIScrollView: CGPoint]) {
+    guard shouldLock else { return }
+    CATransaction.begin()
+    CATransaction.lock()
+    scrollViews.forEach { $0.key.contentOffset = $0.value }
+    CATransaction.unlock()
+    CATransaction.commit()
+  }
+
   private func viewDidLoadIfNeeded(_ notification: Notification) {
     guard Injection.isLoaded else { return }
     guard Injection.viewControllerWasInjected(self, in: notification) else { return }
 
     if !Injection.swizzleViewControllers {
       NotificationCenter.default.removeObserver(self)
+    }
+
+    var scrollViews = [UIScrollView: CGPoint]()
+    for case let scrollView as UIScrollView in view.subviews {
+      scrollViews[scrollView] = scrollView.contentOffset
     }
 
     switch self {
@@ -39,6 +53,7 @@ import UIKit
     view.subviews.filter({ $0.frame.size == .zero }).forEach {
       $0.sizeToFit()
     }
+    processScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
   }
 
   private func removeViewsAndLayers() {
