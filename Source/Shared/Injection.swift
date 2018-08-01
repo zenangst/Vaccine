@@ -147,9 +147,15 @@ public class Injection {
 
     var shouldRespondToInjection: Bool = false
 
+    #if swift(>=4.2)
+    let childViewControllers = viewController.children
+    #else
+    let childViewControllers = viewController.childViewControllers
+    #endif
+
     /// Check if parent view controller should be injected.
-    if !viewController.childViewControllers.isEmpty {
-      for childViewController in viewController.childViewControllers {
+    if !childViewControllers.isEmpty {
+      for childViewController in childViewControllers {
         if object.classForCoder == childViewController.classForCoder {
           shouldRespondToInjection = true
           break

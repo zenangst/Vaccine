@@ -30,10 +30,17 @@ import Cocoa
   }
 
   private func removeChildViewControllers() {
+    #if swift(>=4.2)
+    children.forEach {
+      $0.view.removeFromSuperview()
+      $0.removeFromParent()
+    }
+    #else
     childViewControllers.forEach {
       $0.view.removeFromSuperview()
       $0.removeFromParentViewController()
     }
+    #endif
   }
 
   @objc func injected(_ notification: Notification) {
