@@ -36,9 +36,25 @@ import Foundation
 /// ```
 ///
 public class Injection {
+  /// The file bundle
+  static var bundle: String {
+    #if os(iOS)
+      return "iOSInjection.bundle"
+    #elseif os(tvOS)
+      return "tvOSInjection.bundle"
+    #else
+      return "macOSInjection.bundle"
+    #endif
+  }
+
   /// The path to the resource folder of the InjectionIII.app.
   static var resourcePath: String {
     return "/Applications/InjectionIII.app/Contents/Resources"
+  }
+
+  // The path to the injection bundle.
+  static var bundlePath: String {
+    return "\(Injection.resourcePath)/\(Injection.bundle)"
   }
 
   static var swizzleViewControllers: Bool = false {
@@ -69,15 +85,9 @@ public class Injection {
     guard !Injection.isLoaded else { return self }
 
     #if targetEnvironment(simulator)
-      #if os(iOS)
-        _ = Bundle(path: "\(Injection.resourcePath)/iOSInjection.bundle")?.load()
-      #else
-        _ = Bundle(path: "\(Injection.resourcePath)/tvOSInjection.bundle")?.load()
-      #endif
-    #else
-      #if os(macOS)
-        _ = Bundle(path: "\(Injection.resourcePath)/macOSInjection.bundle")?.load()
-      #endif
+      _ = Bundle(path: Injection.bundlePath)?.load()
+    #elseif os(macOS)
+      _ = Bundle(path: Injection.bundlePath)?.load()
     #endif
 
     swizzleViewControllers = swizzling
