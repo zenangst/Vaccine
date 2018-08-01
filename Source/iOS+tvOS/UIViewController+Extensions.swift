@@ -2,10 +2,17 @@ import UIKit
 
 @objc public extension UIViewController {
   private func removeChildViewControllers() {
+    #if swift(>=4.2)
+    children.forEach {
+      $0.view.removeFromSuperview()
+      $0.removeFromParent()
+    }
+    #else
     childViewControllers.forEach {
       $0.view.removeFromSuperview()
       $0.removeFromParentViewController()
     }
+    #endif
   }
 
   private func lockScreenUpdates(_ shouldLock: Bool, scrollViews: [UIScrollView: CGPoint]) {
