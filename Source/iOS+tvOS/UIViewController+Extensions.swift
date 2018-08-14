@@ -3,14 +3,16 @@ import UIKit
 @objc public extension UIViewController {
   private func removeChildViewControllers() {
     #if swift(>=4.2)
-    children.forEach {
-      $0.view.removeFromSuperview()
-      $0.removeFromParent()
+    children.forEach { controller in
+      controller.willMove(toParent: nil)
+      controller.view.removeFromSuperview()
+      controller.removeFromParent()
     }
     #else
-    childViewControllers.forEach {
-      $0.view.removeFromSuperview()
-      $0.removeFromParentViewController()
+    childViewControllers.forEach { controller in
+      controller.willMove(toParentViewController: nil)
+      controller.view.removeFromSuperview()
+      controller.removeFromParentViewController()
     }
     #endif
   }
