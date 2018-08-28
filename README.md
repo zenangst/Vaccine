@@ -147,6 +147,29 @@ class CustomView: UIView {
 }
 ```
 
+If you enable swizzling when loading the injection bundle, then the initializer for all views will be switch out in
+order to evaluate if your view conforms to injection. It does this by checking if the view responds to the `loadView` selector.
+This removes the need to manual add injection related code into your views. Note that `loadView` needs `@objc` in order
+for injection to properly find and invoke the method when the view gets injected. Views that do not respond to the
+selector will be ignored.
+
+```swift
+class CustomView: UIView {
+  override init(frame: CGRect) {
+    super.init(frame: frame)
+    loadView()
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+
+  @objc func loadView() {
+    // Your code goes here.
+  }
+}
+```
+
 If you feel like this is a lot of code to write for all views that you create, I recommend
 creating an Xcode template for creating views.
 

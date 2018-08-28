@@ -57,6 +57,10 @@ public class Injection {
     return "\(Injection.resourcePath)/\(Injection.bundle)"
   }
 
+  static var swizzleViews: Bool = false {
+    didSet { if swizzleViews { View._swizzleViews() } }
+  }
+
   static var swizzleViewControllers: Bool = false {
     didSet { if swizzleViewControllers { ViewController._swizzleViewControllers() } }
   }
@@ -91,6 +95,7 @@ public class Injection {
     #endif
 
     swizzleViewControllers = swizzling
+    swizzleViews = swizzling
     closure?()
     return self
   }
