@@ -17,9 +17,11 @@ public extension CollectionView {
     #endif
   }
 
-  @objc func vaccine_setDataSource(_ dataSource: CollectionViewDataSource) {
-    self.vaccine_setDataSource(dataSource)
-    addInjection(with: #selector(vaccine_datasource_injected))
+  @objc func vaccine_setDataSource(_ newDataSource: CollectionViewDataSource?) {
+    if dataSource == nil && newDataSource != nil {
+      addInjection(with: #selector(vaccine_datasource_injected))
+    }
+    self.vaccine_setDataSource(newDataSource)
   }
 
   @objc func vaccine_datasource_injected(_ notification: Notification) {

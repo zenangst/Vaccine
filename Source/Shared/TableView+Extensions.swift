@@ -17,9 +17,11 @@ public extension TableView {
     #endif
   }
 
-  @objc func vaccine_setDataSource(_ dataSource: TableViewDataSource) {
+  @objc func vaccine_setDataSource(_ newDataSource: TableViewDataSource?) {
+    if dataSource == nil && newDataSource != nil {
+      addInjection(with: #selector(vaccine_datasource_injected))
+    }
     self.vaccine_setDataSource(dataSource)
-    addInjection(with: #selector(vaccine_datasource_injected))
   }
 
   @objc func vaccine_datasource_injected(_ notification: Notification) {
