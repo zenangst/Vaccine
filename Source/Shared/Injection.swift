@@ -61,6 +61,14 @@ public class Injection {
     didSet { if swizzleViews { View._swizzleViews() } }
   }
 
+  static var swizzleCollectionViews: Bool = false {
+    didSet { if swizzleTableViews { CollectionView._swizzleCollectionViews() } }
+  }
+
+  static var swizzleTableViews: Bool = false {
+    didSet { if swizzleTableViews { TableView._swizzleTableViews() } }
+  }
+
   static var swizzleViewControllers: Bool = false {
     didSet { if swizzleViewControllers { ViewController._swizzleViewControllers() } }
   }
@@ -96,6 +104,8 @@ public class Injection {
 
     swizzleViewControllers = swizzling
     swizzleViews = swizzling
+    swizzleTableViews = swizzling
+    swizzleCollectionViews = swizzling
     closure?()
     return self
   }

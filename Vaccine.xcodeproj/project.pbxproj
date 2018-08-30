@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD2C456E21385A2D00C17BD6 /* CollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2C456D21385A2D00C17BD6 /* CollectionView+Extensions.swift */; };
+		BD2C456F21385A2D00C17BD6 /* CollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2C456D21385A2D00C17BD6 /* CollectionView+Extensions.swift */; };
+		BD2C457121385AD900C17BD6 /* TableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2C457021385AD900C17BD6 /* TableView+Extensions.swift */; };
+		BD2C457221385AD900C17BD6 /* TableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2C457021385AD900C17BD6 /* TableView+Extensions.swift */; };
+		BD2C457321385BAD00C17BD6 /* CollectionView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2C456D21385A2D00C17BD6 /* CollectionView+Extensions.swift */; };
+		BD2C457421385BB600C17BD6 /* TableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2C457021385AD900C17BD6 /* TableView+Extensions.swift */; };
 		BD2F6E6420C93B3200621BC8 /* UIScreenTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD2F6E6320C93B3200621BC8 /* UIScreenTests.swift */; };
 		BD4B8C4A20C860CB00836815 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B8C4920C860CB00836815 /* TypeAlias.swift */; };
 		BD4B8C4B20C860CB00836815 /* TypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4B8C4920C860CB00836815 /* TypeAlias.swift */; };
@@ -83,6 +89,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BD2C456D21385A2D00C17BD6 /* CollectionView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+Extensions.swift"; sourceTree = "<group>"; };
+		BD2C457021385AD900C17BD6 /* TableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableView+Extensions.swift"; sourceTree = "<group>"; };
 		BD2F6E6320C93B3200621BC8 /* UIScreenTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreenTests.swift; sourceTree = "<group>"; };
 		BD4B8C4920C860CB00836815 /* TypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeAlias.swift; sourceTree = "<group>"; };
 		BD592EB720B837BB006DE955 /* NSViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSViewController+Extensions.swift"; sourceTree = "<group>"; };
@@ -298,10 +306,12 @@
 		D5C6296E1C3A809D007F7B7C /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				BD2C456D21385A2D00C17BD6 /* CollectionView+Extensions.swift */,
 				BD7242CA20CFBF080006DCF7 /* DispatchQueue.swift */,
 				BD6F516A20B7D6BA001E113B /* Injection.swift */,
 				BD6AC87620B6D61B00CBE8BA /* NSObject+Extensions.swift */,
 				BD7242C620CFBE760006DCF7 /* Swizzling.swift */,
+				BD2C457021385AD900C17BD6 /* TableView+Extensions.swift */,
 				BD4B8C4920C860CB00836815 /* TypeAlias.swift */,
 				BDFC75872135307B001610EC /* View+Extensions.swift */,
 				BD7242CE20CFC0CB0006DCF7 /* ViewController+Extensions.swift */,
@@ -569,10 +579,12 @@
 			files = (
 				BD6F516D20B7D6BA001E113B /* Injection.swift in Sources */,
 				BDFC758A2135307B001610EC /* View+Extensions.swift in Sources */,
+				BD2C456F21385A2D00C17BD6 /* CollectionView+Extensions.swift in Sources */,
 				BD7242C920CFBE760006DCF7 /* Swizzling.swift in Sources */,
 				BD6AC87320B6D5C800CBE8BA /* UIApplicationDelegate+Extensions.swift in Sources */,
 				BD5FC7F420B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */,
 				BD7242D120CFC0CB0006DCF7 /* ViewController+Extensions.swift in Sources */,
+				BD2C457221385AD900C17BD6 /* TableView+Extensions.swift in Sources */,
 				BD6AC87920B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
 				BD7242CD20CFBF080006DCF7 /* DispatchQueue.swift in Sources */,
 				BD4B8C4C20C860CB00836815 /* TypeAlias.swift in Sources */,
@@ -603,6 +615,8 @@
 				BD5FC7F320B80D8500A08D21 /* UIViewController+Extensions.swift in Sources */,
 				BD6AC87720B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
 				BD7242CF20CFC0CB0006DCF7 /* ViewController+Extensions.swift in Sources */,
+				BD2C457121385AD900C17BD6 /* TableView+Extensions.swift in Sources */,
+				BD2C456E21385A2D00C17BD6 /* CollectionView+Extensions.swift in Sources */,
 				BDEA432B20C921B600CF30A2 /* Device.swift in Sources */,
 				BD4B8C4A20C860CB00836815 /* TypeAlias.swift in Sources */,
 				BD7242CB20CFBF080006DCF7 /* DispatchQueue.swift in Sources */,
@@ -629,10 +643,12 @@
 			files = (
 				BD6F516C20B7D6BA001E113B /* Injection.swift in Sources */,
 				BDFC75892135307B001610EC /* View+Extensions.swift in Sources */,
+				BD2C457321385BAD00C17BD6 /* CollectionView+Extensions.swift in Sources */,
 				BD7242C820CFBE760006DCF7 /* Swizzling.swift in Sources */,
 				BD592EB820B837BB006DE955 /* NSViewController+Extensions.swift in Sources */,
 				BD6AC87520B6D5ED00CBE8BA /* NSApplicationDelegate+Extensions.swift in Sources */,
 				BD7242D020CFC0CB0006DCF7 /* ViewController+Extensions.swift in Sources */,
+				BD2C457421385BB600C17BD6 /* TableView+Extensions.swift in Sources */,
 				BD6AC87820B6D61B00CBE8BA /* NSObject+Extensions.swift in Sources */,
 				BD7242CC20CFBF080006DCF7 /* DispatchQueue.swift in Sources */,
 				BD4B8C4B20C860CB00836815 /* TypeAlias.swift in Sources */,

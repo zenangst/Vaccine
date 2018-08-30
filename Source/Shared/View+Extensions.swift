@@ -18,7 +18,6 @@ extension View {
                         swizzledSelector: swizzledSelector)
     }
     #endif
-
   }
 
   @objc public convenience init(vaccineFrame frame: Rect) {
