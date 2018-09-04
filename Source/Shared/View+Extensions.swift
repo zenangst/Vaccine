@@ -29,9 +29,13 @@ extension View {
   }
 
   @objc func vaccine_view_injected(_ notification: Notification) {
-    let selector = Selector("loadView")
+    let selector = _Selector("loadView")
     if responds(to: selector), Injection.objectWasInjected(self, in: notification) {
       perform(selector)
     }
+  }
+
+  private func _Selector(_ string: String) -> Selector {
+    return Selector(string)
   }
 }
