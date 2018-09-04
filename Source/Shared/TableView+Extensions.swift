@@ -21,7 +21,7 @@ public extension TableView {
     if dataSource == nil && newDataSource != nil {
       addInjection(with: #selector(vaccine_datasource_injected))
     }
-    self.vaccine_setDataSource(dataSource)
+    self.vaccine_setDataSource(newDataSource)
   }
 
   @objc func vaccine_datasource_injected(_ notification: Notification) {
