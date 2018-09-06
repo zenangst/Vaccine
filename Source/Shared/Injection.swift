@@ -73,19 +73,26 @@ public class Injection {
     didSet { if swizzleViewControllers { ViewController._swizzleViewControllers() } }
   }
 
-  /// Deteremins if the InjectionIII bundle is loaded.
+  /// Determines if the InjectionIII bundle is loaded by searching all loaded bundles.
   static var isLoaded: Bool {
     // Check if tests are running.
     if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
       return true
     }
 
-    return !Bundle.allBundles.filter {
-      $0.bundleURL
+    // Search for injection in the loaded bundles.
+    var result: Bool = false
+    for bundle in Bundle.allBundles {
+      let url = bundle.bundleURL
         .lastPathComponent
         .lowercased()
-        .range(of: "injection") != nil }
-      .isEmpty
+      if url.range(of: "injection.bundle") != nil {
+        result = true
+        break
+      }
+    }
+
+    return result
   }
 
   /// Load the InjectionIII bundle.
