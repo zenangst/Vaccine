@@ -73,7 +73,7 @@ public class Injection {
     didSet { if swizzleViewControllers { ViewController._swizzleViewControllers() } }
   }
 
-  /// Deteremins if the InjectionIII bundle is loaded by searching all loaded bundles.
+  /// Determines if the InjectionIII bundle is loaded by searching all loaded bundles.
   static var isLoaded: Bool {
     // Check if tests are running.
     if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
