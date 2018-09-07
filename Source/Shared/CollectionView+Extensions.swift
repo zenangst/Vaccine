@@ -10,7 +10,7 @@ public extension CollectionView {
     DispatchQueue.once(token: "com.zenangst.Vaccine.swizzleCollectionViews") {
       let originalSelector = #selector(setter: CollectionView.dataSource)
       let swizzledSelector = #selector(CollectionView.vaccine_setDataSource(_:))
-      Swizzling.swizzle(UICollectionView.self,
+      Swizzling.swizzle(CollectionView.self,
                         originalSelector: originalSelector,
                         swizzledSelector: swizzledSelector)
     }
