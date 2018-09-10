@@ -104,7 +104,7 @@ public class Injection {
   /// - Returns: An instance of `self` in order to make the function chainable.
   @discardableResult public static func load(_ closure: (() -> Void)? = nil,
                                              swizzling: Bool = false,
-                                             animations: Bool = false) -> Injection.Type {
+                                             animations: Bool = true) -> Injection.Type {
     guard !Injection.isLoaded else { return self }
 
     #if targetEnvironment(simulator)
