@@ -31,7 +31,18 @@ extension View {
   @objc func vaccine_view_injected(_ notification: Notification) {
     let selector = _Selector("loadView")
     if responds(to: selector), Injection.objectWasInjected(self, in: notification) {
-      perform(selector)
+      #if os(macOS)
+        self.perform(selector)
+      #else
+        guard Injection.animations else { self.perform(selector); return }
+
+        let options: UIViewAnimationOptions = [.allowAnimatedContent,
+                                               .beginFromCurrentState,
+                                               .layoutSubviews]
+        UIView.animate(withDuration: 0.3, delay: 0.0, options: options, animations: {
+          self.perform(selector)
+        }, completion: nil)
+      #endif
     }
   }
 

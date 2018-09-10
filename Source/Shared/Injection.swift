@@ -73,6 +73,8 @@ public class Injection {
     didSet { if swizzleViewControllers { ViewController._swizzleViewControllers() } }
   }
 
+  static var animations: Bool = false
+
   /// Determines if the InjectionIII bundle is loaded by searching all loaded bundles.
   static var isLoaded: Bool {
     // Check if tests are running.
@@ -100,7 +102,9 @@ public class Injection {
   /// - Parameter closure: Optional closure that will be invoked after the bundle has been loaded.
   ///                      NOTE: Will not be invoked if bundled is not found.
   /// - Returns: An instance of `self` in order to make the function chainable.
-  @discardableResult public static func load(_ closure: (() -> Void)? = nil, swizzling: Bool = false) -> Injection.Type {
+  @discardableResult public static func load(_ closure: (() -> Void)? = nil,
+                                             swizzling: Bool = false,
+                                             animations: Bool = false) -> Injection.Type {
     guard !Injection.isLoaded else { return self }
 
     #if targetEnvironment(simulator)
@@ -113,6 +117,7 @@ public class Injection {
     swizzleViews = swizzling
     swizzleTableViews = swizzling
     swizzleCollectionViews = swizzling
+    self.animations = animations
     closure?()
     return self
   }

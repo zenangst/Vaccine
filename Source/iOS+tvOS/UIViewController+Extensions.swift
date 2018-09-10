@@ -37,15 +37,46 @@ import UIKit
     guard Injection.isLoaded else { return }
     guard Injection.viewControllerWasInjected(self, in: notification) else { return }
 
+    let options: UIViewAnimationOptions = [.allowAnimatedContent,
+                                           .beginFromCurrentState,
+                                           .layoutSubviews]
+
     if !Injection.swizzleViewControllers {
       NotificationCenter.default.removeObserver(self)
     }
 
+    if Injection.animations, let snapshot = self.view.snapshotView(afterScreenUpdates: false) {
+      let maskView = UIView()
+      maskView.frame.size = snapshot.frame.size
+      maskView.frame.origin.y = navigationController?.navigationBar.frame.maxY ?? 0
+      maskView.backgroundColor = .white
+      snapshot.mask = maskView
+      view.window?.addSubview(snapshot)
+      self.performCleanUp()
+      self.performCoreTasks()
+      UIView.animate(withDuration: 0.15, delay: 0.0, options: options, animations: {
+        snapshot.alpha = 0.0
+      }) { _ in
+        snapshot.removeFromSuperview()
+      }
+    } else {
+      self.performCleanUp()
+      self.performCoreTasks()
+    }
+  }
+
+  private func performCleanUp() {
     var scrollViews = [UIScrollView: CGPoint]()
+    if !Injection.animations {
+      defer {
+        unlockScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
+      }
+      lockScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
+    }
+
     for case let scrollView as UIScrollView in view.subviews {
       scrollViews[scrollView] = scrollView.contentOffset
     }
-    lockScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
 
     switch self {
     case _ as UINavigationController:
@@ -56,7 +87,9 @@ import UIKit
       removeChildViewControllers()
       removeViewsAndLayers()
     }
+  }
 
+  private func performCoreTasks() {
     viewDidLoad()
     view.subviews.forEach { view in
       view.setNeedsLayout()
@@ -70,8 +103,6 @@ import UIKit
     view.subviews.filter({ $0.frame.size == .zero }).forEach {
       $0.sizeToFit()
     }
-
-    unlockScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
   }
 
   private func removeViewsAndLayers() {
