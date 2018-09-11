@@ -50,7 +50,7 @@ For InjectionIII to work, you need to load the bundle located inside the applica
 ```swift
 // Loads the injection bundle and registers 
 // for injection notifications using `injected` selector.
-Injection.load(self.applicationDidLoad)
+Injection.load(then: applicationDidLoad)
          .add(observer: self, with: #selector(injected(_:)))
 ```
 
@@ -66,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    Injection.load(self.applicationDidLoad).add(observer: self,
+                   Injection.load(then: applicationDidLoad).add(observer: self,
                                                 with: #selector(injected(_:)))
     return true
   }
@@ -92,11 +92,11 @@ When the code gets injected, `applicationDidLoad` will be invoked. It cleans and
 Injecting view controllers is really where InjectionIII shines the most. Vaccine provides extensions to make this easy to setup and maintain. When injection notifications come in, Vaccine will filter out view controllers that do not fill the criteria for being reloaded. It checks if the current view controller belongs to a child view controller, if that turns out to be true, then it will reload the parent view controller to make sure that all necessary controllers are notified about the change.
 
 **Note**
-Vaccine also supports adding view controller injection using swizzling.
-This feature can be enabled by setting `swizzling` to `true` when loading the bundle.
+Vaccine also supports adding injection using swizzling on views, view controllers and table and collection view data sources.
+This features is enabled by default but can be disabled by setting `swizzling` to `false` when loading the bundle.
 
 ```swift
-Injection.load(..., swizzling: true)
+Injection.load(then: ..., swizzling: false)
 ```
 
 When injecting a view controller, the following things will happen:
@@ -164,7 +164,7 @@ class CustomView: UIView {
     fatalError("init(coder:) has not been implemented")
   }
 
-  @objc func loadView() {
+  @objc private func loadView() {
     // Your code goes here.
   }
 }
@@ -175,7 +175,14 @@ creating an Xcode template for creating views.
 
 ## Auto layout constraints
 
-Adding additional constraints can quickly land you in a situation where your layout constraints are ambiguous. One way to tackle this issue is to gather all your views constraints into an array, and at the top of your setup method, you simply set these constraints to be deactivated. That way you can add additional constraints by continuing to inject, and the latest pair are the only ones that will be active and in use.
+Adding additional constraints can quickly land you in a situation where your layout constraints are ambiguous. 
+One way to tackle this issue is to gather all your views constraints into an array, and at the top of your setup method, 
+you simply set these constraints to be deactivated. That way you can add additional constraints by continuing to inject, 
+and the latest pair are the only ones that will be active and in use.
+
+When using `swizzling`, the framework will try and resolve the `layoutConstraints` from your view and deactivate them in order to avoid
+conflict with any new constraints that you may apply in your `loadView()` method. Which means that you can remove the call to `NSLayoutConstraint`
+to deactivate the current constraints.
 
 ```swift
 class CustomView: UIView {
