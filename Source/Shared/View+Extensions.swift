@@ -45,7 +45,7 @@ extension View {
     if responds(to: selector), Injection.objectWasInjected(self, in: notification) {
       invalidateIfNeededLayoutConstraints()
       #if os(macOS)
-        self.perform(loadViewSelector)
+        self.perform(selector)
       #else
         guard Injection.animations else { perform(selector); return }
 
