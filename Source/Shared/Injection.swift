@@ -97,13 +97,20 @@ public class Injection {
     return result
   }
 
-  /// Load the InjectionIII bundle.
+  /// Load the InjectionIII bundle and optionally perform post actions when the bundle
+  /// is finished loading. The handler is called even if the bundle cannot be found.
   ///
-  /// - Parameter closure: Optional closure that will be invoked after the bundle has been loaded.
-  ///                      NOTE: Will not be invoked if bundled is not found.
+  /// - Parameters:
+  ///   - handler: Optional closure that will be invoked after the bundle has been loaded.
+  ///   - swizzling: Determines if swizzling should be applied, defaults to `true`.
+  ///   - animations: Determines if animations should be used for view and view controller injections.
+  ///                 Defaults to `true`
   /// - Returns: An instance of `self` in order to make the function chainable.
-  @discardableResult public static func load(_ closure: (() -> Void)? = nil,
-                                             swizzling: Bool = false,
+  ///
+  /// - Note: The bundle will only load if the application is running in the simulator.
+  ///         Swizzling is only allowed from applications that have the `DEBUG` flag set.
+  @discardableResult public static func load(then handler: (() -> Void)? = nil,
+                                             swizzling: Bool = true,
                                              animations: Bool = true) -> Injection.Type {
     guard !Injection.isLoaded else { return self }
 
@@ -118,7 +125,7 @@ public class Injection {
     swizzleTableViews = swizzling
     swizzleCollectionViews = swizzling
     self.animations = animations
-    closure?()
+    handler?()
     return self
   }
 
