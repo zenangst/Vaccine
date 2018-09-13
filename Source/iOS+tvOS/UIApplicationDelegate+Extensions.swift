@@ -1,18 +1,6 @@
 import UIKit
 
 public extension UIApplicationDelegate {
-  func loadInjection(_ closure: (() -> Void)? = nil) {
-    guard !Injection.isLoaded else { return }
-
-    #if targetEnvironment(simulator)
-      #if os(iOS)
-        _ = Bundle(path: "\(Injection.resourcePath)/iOSInjection.bundle")?.load()
-      #else
-        _ = Bundle(path: "\(Injection.resourcePath)/tvOSInjection.bundle")?.load()
-      #endif
-    #endif
-
-    closure?()
   /// Transition between windows using `UIView.transition` and make window key and visible.
   /// If there is no previous window, the method will return early and call `.makeKeyAndVisible()`
   /// on the new window.
