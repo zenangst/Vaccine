@@ -65,6 +65,10 @@ public class Injection {
     didSet { if swizzleTableViews { CollectionView._swizzleCollectionViews() } }
   }
 
+  static var swizzleCollectionViewLayouts: Bool = false {
+    didSet { if swizzleTableViews { CollectionViewLayout._swizzleCollectionLayout() } }
+  }
+
   static var swizzleTableViews: Bool = false {
     didSet { if swizzleTableViews { TableView._swizzleTableViews() } }
   }
@@ -124,6 +128,7 @@ public class Injection {
     swizzleViews = swizzling
     swizzleTableViews = swizzling
     swizzleCollectionViews = swizzling
+    swizzleCollectionViewLayouts = swizzling
     self.animations = animations
     handler?()
     return self

@@ -2,6 +2,7 @@
 import Cocoa
 public typealias CollectionView = NSCollectionView
 public typealias CollectionViewDataSource = NSCollectionViewDataSource
+public typealias CollectionViewLayout = NSCollectionViewLayout
 public typealias TableView = NSTableView
 public typealias TableViewDataSource = NSTableViewDataSource
 
@@ -30,6 +31,7 @@ public typealias ViewController = NSViewController
 import UIKit
 public typealias CollectionView = UICollectionView
 public typealias CollectionViewDataSource = UICollectionViewDataSource
+public typealias CollectionViewLayout = UICollectionViewLayout
 public typealias TableView = UITableView
 public typealias TableViewDataSource = UITableViewDataSource
 /// A view extension that is used to add swizzling of the `init(_ frame: CGRect)` in order
