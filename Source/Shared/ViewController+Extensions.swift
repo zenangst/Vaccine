@@ -7,7 +7,7 @@
 extension ViewController {
   public static func _swizzleViewControllers() {
     #if DEBUG
-      DispatchQueue.once(token: "com.zenangst.Vaccine.swizzleViewControllers") {
+      DispatchQueue.once(token: "com.zenangst.Vaccine.\(#function)") {
         let originalSelector = #selector(loadView)
         let swizzledSelector = #selector(vaccine_loadView)
         Swizzling.swizzle(ViewController.self,

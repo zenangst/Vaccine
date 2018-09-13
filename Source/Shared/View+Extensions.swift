@@ -10,7 +10,7 @@ extension View {
   /// Swizzle initializers for views if application is compiled in debug mode.
   static func _swizzleViews() {
     #if DEBUG
-    DispatchQueue.once(token: "com.zenangst.Vaccine.swizzleViews") {
+    DispatchQueue.once(token: "com.zenangst.Vaccine.\(#function)") {
       let originalSelector = #selector(View.init(frame:))
       let swizzledSelector = #selector(View.init(vaccineFrame:))
       Swizzling.swizzle(View.self,

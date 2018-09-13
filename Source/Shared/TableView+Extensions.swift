@@ -7,7 +7,7 @@ import UIKit
 public extension TableView {
   static func _swizzleTableViews() {
     #if DEBUG
-    DispatchQueue.once(token: "com.zenangst.Vaccine.swizzleTableViews") {
+    DispatchQueue.once(token: "com.zenangst.Vaccine.\(#function)") {
       let originalSelector = #selector(setter: TableView.dataSource)
       let swizzledSelector = #selector(TableView.vaccine_setDataSource(_:))
       Swizzling.swizzle(TableView.self,
