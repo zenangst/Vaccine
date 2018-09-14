@@ -188,19 +188,15 @@ public class Injection {
     return result
   }
 
-  static func viewControllerWasInjected(_ viewController: ViewController, in notification: Notification) -> Bool {
+  static func viewControllerWasInjected(_ viewController: ViewController,
+                                        in notification: Notification) -> Bool {
     if objectWasInjected(self, in: notification) { return true }
     guard let object = object(from: notification) else {
       return false
     }
 
     var shouldRespondToInjection: Bool = false
-
-    #if swift(>=4.2)
-    let childViewControllers = viewController.children
-    #else
-    let childViewControllers = viewController.childViewControllers
-    #endif
+    let childViewControllers = viewController.childViewControllersRecursive()
 
     /// Check if parent view controller should be injected.
     if !childViewControllers.isEmpty {
