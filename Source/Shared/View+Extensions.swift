@@ -56,7 +56,7 @@ extension View {
 
     if responds(to: selector), Injection.objectWasInjected(self, in: notification) {
       #if os(macOS)
-        closure?()
+        closure()
       #else
         guard Injection.animations else { closure(); return }
 
