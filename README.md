@@ -181,8 +181,9 @@ you simply set these constraints to be deactivated. That way you can add additio
 and the latest pair are the only ones that will be active and in use.
 
 When using `swizzling`, the framework will try and resolve the `layoutConstraints` from your view and deactivate them in order to avoid
-conflict with any new constraints that you may apply in your `loadView()` method. Which means that you can remove the call to `NSLayoutConstraint`
-to deactivate the current constraints.
+conflict with any new constraints that you may apply in your `loadView()` method. Which means that you can remove the call to `NSLayoutConstraint` to deactivate the current constraints. 
+
+**Note**: Using `layoutConstraints` is optional, if your view does not use stored constraints, then Vaccine will recursively deactivate all constraints on all of its subviews when the view gets injected.
 
 ```swift
 class CustomView: UIView {
