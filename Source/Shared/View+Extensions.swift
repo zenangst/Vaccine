@@ -20,13 +20,6 @@ extension View {
     #endif
   }
 
-  /// Recursively gather all subviews into a single collection.
-  ///
-  /// - Returns: A collection of views.
-  private func subviewsRecursive() -> [View] {
-    return subviews + subviews.flatMap { $0.subviewsRecursive() }
-  }
-
   /// Swizzled init method for view.
   /// This method is used to add a responder for InjectionIII notifications.
   ///
@@ -49,22 +42,18 @@ extension View {
   /// - Parameter notification: An InjectionIII notification.
   @objc func vaccine_view_injected(_ notification: Notification) {
     let selector = _Selector("loadView")
-    let closure = { [weak self] in
-      self?.invalidateIfNeededLayoutConstraints()
-      self?.perform(selector)
-    }
-
     if responds(to: selector), Injection.objectWasInjected(self, in: notification) {
+      invalidateIfNeededLayoutConstraints()
       #if os(macOS)
-        closure?()
+        self.perform(selector)
       #else
-        guard Injection.animations else { closure(); return }
+        guard Injection.animations else { perform(selector); return }
 
         let options: UIViewAnimationOptions = [.allowAnimatedContent,
                                                .beginFromCurrentState,
                                                .layoutSubviews]
         UIView.animate(withDuration: 0.3, delay: 0.0, options: options, animations: {
-          closure()
+          self.perform(selector)
         }, completion: nil)
       #endif
     }
@@ -80,14 +69,11 @@ extension View {
   }
 
   /// Invalidate layout constraints if `.layoutConstraints` can be resolved.
-  /// If `.layoutConstraints` cannot be resolved, then it will recursively deactivate
-  /// constraints on all subviews.
   private func invalidateIfNeededLayoutConstraints() {
     let key = "layoutConstraints"
-    if responds(to: _Selector(key)), let layoutConstraints = value(forKey: key) as? [NSLayoutConstraint] {
+    let selector = _Selector(key)
+    if responds(to: selector), let layoutConstraints = value(forKey: key) as? [NSLayoutConstraint] {
       NSLayoutConstraint.deactivate(layoutConstraints)
-    } else {
-      subviewsRecursive().forEach { NSLayoutConstraint.deactivate($0.constraints) }
     }
   }
 }
