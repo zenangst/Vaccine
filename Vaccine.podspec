@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "Vaccine"
   s.summary          = "Make your apps immune to recompile-disease."
-  s.version          = "0.10.2"
+  s.version          = "0.11.0"
   s.homepage         = "https://github.com/zenangst/Vaccine"
   s.license          = 'MIT'
   s.author           = { "Christoffer Winterkvist" => "christoffer@winterkvist.com" }
@@ -20,5 +20,5 @@ Pod::Spec.new do |s|
   s.tvos.source_files = 'Source/{iOS+tvOS,tvOS,Shared}/**/*'
   s.osx.source_files = 'Source/{macOS,Shared}/**/*'
 
-  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.0' }
+  s.pod_target_xcconfig = { 'SWIFT_VERSION' => '4.2' }
 end

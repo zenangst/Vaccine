@@ -79,7 +79,7 @@ import UIKit
   /// added to the applications window in order to nicely
   /// transition to the new controller view state.
   private func performInjection() {
-    let options: UIViewAnimationOptions = [.allowAnimatedContent,
+    let options: UIView.AnimationOptions = [.allowAnimatedContent,
                                            .beginFromCurrentState,
                                            .layoutSubviews]
     if Injection.animations, let snapshot = self.view.snapshotView(afterScreenUpdates: false) {
@@ -157,7 +157,7 @@ import UIKit
       }
     }
 
-    for childViewController in childViewControllers {
+    for childViewController in children {
       for case let scrollView as UIScrollView in childViewController.view.subviews {
         scrollViews.append(scrollView)
       }

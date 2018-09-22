@@ -60,7 +60,7 @@ extension View {
       #else
         guard Injection.animations else { closure(); return }
 
-        let options: UIViewAnimationOptions = [.allowAnimatedContent,
+      let options: UIView.AnimationOptions = [.allowAnimatedContent,
                                                .beginFromCurrentState,
                                                .layoutSubviews]
         UIView.animate(withDuration: 0.3, delay: 0.0, options: options, animations: {
