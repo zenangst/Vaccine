@@ -27,7 +27,7 @@ class ViewControllerTests: XCTestCase {
       Injection.add(observer: self, with: #selector(injected(_:)))
       view.addSubview(dummyView)
       view.layer?.addSublayer(dummyLayer)
-      addChildViewController(childViewController)
+      addChild(childViewController)
       timesInvoked += 1
     }
   }
@@ -38,7 +38,7 @@ class ViewControllerTests: XCTestCase {
     XCTAssertEqual(viewController.timesInvoked, 1)
     utilities.triggerInjection(viewController)
     XCTAssertEqual(viewController.timesInvoked, 2)
-    XCTAssertEqual(viewController.childViewControllers.count, 1)
+    XCTAssertEqual(viewController.children.count, 1)
     XCTAssertEqual(viewController.view.subviews.count, 1)
     XCTAssertEqual(viewController.view.layer?.sublayers?.count, 1)
   }

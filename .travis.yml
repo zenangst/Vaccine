@@ -1,13 +1,13 @@
-osx_image: xcode9.3
+osx_image: xcode10
 language: objective-c
 
 script:
-  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-macOS" -sdk macosx clean build
-  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-macOS" -sdk macosx -enableCodeCoverage YES test
-  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-iOS" -sdk iphonesimulator -destination name="iPhone 8" clean build
-  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-iOS" -sdk iphonesimulator -destination name="iPhone 8" -enableCodeCoverage YES test
-  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-tvOS" -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=11.0' clean build
-  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-tvOS" -destination 'platform=tvOS Simulator,name=Apple TV 1080p,OS=11.0' -enableCodeCoverage YES test
+  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-macOS" -sdk macosx clean build | xcpretty
+  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-macOS" -sdk macosx -enableCodeCoverage YES test | xcpretty
+  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-iOS" -sdk iphonesimulator -destination name="iPhone 8" clean build | xcpretty
+  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-iOS" -sdk iphonesimulator -destination name="iPhone 8" -enableCodeCoverage YES test | xcpretty
+  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-tvOS" -destination 'platform=tvOS Simulator,name=Apple TV,OS=11.4' clean build | xcpretty
+  - set -o pipefail && xcodebuild -project Vaccine.xcodeproj -scheme "Vaccine-tvOS" -destination 'platform=tvOS Simulator,name=Apple TV,OS=11.4' -enableCodeCoverage YES test | xcpretty
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
