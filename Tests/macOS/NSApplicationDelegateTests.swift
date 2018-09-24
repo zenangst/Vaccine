@@ -18,7 +18,7 @@ class NSApplicationDelegateTests: XCTestCase {
 
   func testSettingUpInjection() {
     let applicationDelegate = ApplicationDelegateMock()
-    applicationDelegate.loadInjection(applicationDelegate.loadInitialState)
+    Injection.load(then: { applicationDelegate.loadInitialState() })
     applicationDelegate.addInjection(with: #selector(ApplicationDelegateMock.injected(_:)))
     utilities.triggerInjection()
     XCTAssertEqual(applicationDelegate.timesInvoked, 1)
