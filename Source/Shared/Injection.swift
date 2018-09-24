@@ -37,13 +37,13 @@ import Foundation
 ///
 public class Injection {
   /// The file bundle
-  static var bundle: String {
+  static func bundle(version: String = "") -> String {
     #if os(iOS)
-      return "iOSInjection.bundle"
+      return "iOSInjection\(version).bundle"
     #elseif os(tvOS)
-      return "tvOSInjection.bundle"
+      return "tvOSInjection\(version).bundle"
     #else
-      return "macOSInjection.bundle"
+      return "macOSInjection\(version).bundle"
     #endif
   }
 
@@ -53,8 +53,8 @@ public class Injection {
   }
 
   // The path to the injection bundle.
-  static var bundlePath: String {
-    return "\(Injection.resourcePath)/\(Injection.bundle)"
+  static func bundlePath(version: String = "") -> String {
+    return "\(Injection.resourcePath)/\(Injection.bundle(version: version))"
   }
 
   static var swizzleViews: Bool = false {
@@ -118,10 +118,10 @@ public class Injection {
                                              animations: Bool = true) -> Injection.Type {
     guard !Injection.isLoaded else { return self }
 
-    #if targetEnvironment(simulator)
-      _ = Bundle(path: Injection.bundlePath)?.load()
-    #elseif os(macOS)
-      _ = Bundle(path: Injection.bundlePath)?.load()
+    #if targetEnvironment(simulator) || os(macOS)
+      if Bundle(path: Injection.bundlePath(version: "10"))?.load() != false {
+        Bundle(path: Injection.bundlePath())?.load()
+      }
     #endif
 
     swizzleViewControllers = swizzling
