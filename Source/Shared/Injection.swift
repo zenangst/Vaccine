@@ -119,9 +119,10 @@ public class Injection {
     guard !Injection.isLoaded else { return self }
 
     #if targetEnvironment(simulator) || os(macOS)
-      if Bundle(path: Injection.bundlePath(version: "10"))?.load() != false {
-        Bundle(path: Injection.bundlePath())?.load()
-      }
+    let loadedXcode10 = Bundle(path: Injection.bundlePath(version: "10"))?.load() ?? false
+    if !loadedXcode10 {
+      Bundle(path: Injection.bundlePath())?.load()
+    }
     #endif
 
     swizzleViewControllers = swizzling
