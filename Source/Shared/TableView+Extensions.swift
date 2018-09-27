@@ -25,7 +25,7 @@ public extension TableView {
   }
 
   @objc func vaccine_datasource_injected(_ notification: Notification) {
-    guard let dataSource = dataSource else { return }
+    guard window != nil, let dataSource = dataSource else { return }
     guard Injection.objectWasInjected(dataSource, in: notification) else { return }
     reloadData()
   }
