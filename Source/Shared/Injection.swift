@@ -214,6 +214,11 @@ public class Injection {
       shouldRespondToInjection = object.classForCoder == viewController.classForCoder
     }
 
+    /// Do a dirty match on the class name.
+    if !shouldRespondToInjection {
+      shouldRespondToInjection = "\(object.classForCoder)".lowercased().contains("viewcontroller")
+    }
+
     return shouldRespondToInjection
   }
 
