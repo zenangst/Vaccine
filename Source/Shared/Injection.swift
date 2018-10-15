@@ -92,7 +92,7 @@ public class Injection {
       let url = bundle.bundleURL
         .lastPathComponent
         .lowercased()
-      if url.range(of: "injection.bundle") != nil {
+      if url.range(of: "injection") != nil {
         result = true
         break
       }
