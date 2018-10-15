@@ -92,7 +92,7 @@ public class Injection {
       let url = bundle.bundleURL
         .lastPathComponent
         .lowercased()
-      if url.range(of: "injection.bundle") != nil {
+      if url.range(of: "injection") != nil {
         result = true
         break
       }
@@ -212,6 +212,11 @@ public class Injection {
     /// Check if object matches self.
     if !shouldRespondToInjection {
       shouldRespondToInjection = object.classForCoder == viewController.classForCoder
+    }
+
+    /// Do a dirty match on the class name.
+    if !shouldRespondToInjection {
+      shouldRespondToInjection = "\(object.classForCoder)".lowercased().contains("viewcontroller")
     }
 
     return shouldRespondToInjection
