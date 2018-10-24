@@ -1,21 +1,71 @@
 import UIKit
 
 @objc public extension UIViewController {
-  /// Removes all child view controllers.
-  private func removeChildViewControllers() {
-    #if swift(>=4.2)
-    children.forEach { controller in
-      controller.willMove(toParent: nil)
-      controller.view.removeFromSuperview()
-      controller.removeFromParent()
+  /// Validate if the current class was injected by checking the contents
+  /// of the notification.
+  ///
+  /// - Parameter notification: A standard InjectionIII notification
+  private func viewDidLoadIfNeeded(_ notification: Notification) {
+    guard Injection.isLoaded else { return }
+    guard Injection.viewControllerWasInjected(self, in: notification) else { return }
+    if !Injection.swizzleViewControllers {
+      NotificationCenter.default.removeObserver(self)
     }
-    #else
-    childViewControllers.forEach { controller in
-      controller.willMove(toParentViewController: nil)
-      controller.view.removeFromSuperview()
-      controller.removeFromParentViewController()
+
+    performInjection()
+  }
+
+  /// Invoke all injection related methods in sequence.
+  /// If this method is invoked with animations enabled,
+  /// a snapshot of the current view will be created and
+  /// added to the applications window in order to nicely
+  /// transition to the new controller view state.
+  private func performInjection() {
+    let options: UIView.AnimationOptions = [.allowAnimatedContent,
+                                            .beginFromCurrentState,
+                                            .layoutSubviews]
+    if Injection.animations, let snapshot = self.view.snapshotView(afterScreenUpdates: false) {
+      let maskView = UIView()
+      maskView.frame.size = snapshot.frame.size
+      maskView.frame.origin.y = navigationController?.navigationBar.frame.maxY ?? 0
+      maskView.backgroundColor = .white
+      snapshot.mask = maskView
+      view.window?.addSubview(snapshot)
+      let oldScrollViews = indexScrollViews()
+      resetViewControllerState()
+      rebuildViewContorllerState()
+      syncOldScrollViews(oldScrollViews, with: indexScrollViews())
+      UIView.animate(withDuration: 0.25, delay: 0.0, options: options, animations: {
+        snapshot.alpha = 0.0
+      }) { _ in
+        snapshot.removeFromSuperview()
+      }
+    } else {
+      let scrollViews = indexScrollViews()
+      lockScreenUpdates(!scrollViews.isEmpty)
+      resetViewControllerState()
+      rebuildViewContorllerState()
+      unlockScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
     }
-    #endif
+  }
+
+  /// Will invoke `viewDidLoad` to run view controllers setup operations.
+  /// In addition, it will force all subview to layout and collection & table views
+  /// to reload. This is to make sure that we are displaying the latest changes.
+  private func rebuildViewContorllerState() {
+    viewDidLoad()
+    view.subviews.forEach { view in
+      view.setNeedsLayout()
+      view.layoutIfNeeded()
+      view.setNeedsDisplay()
+
+      (view as? UICollectionView)?.reloadData()
+      (view as? UITableView)?.reloadData()
+    }
+
+    view.subviews.filter({ $0.frame.size == .zero }).forEach {
+      $0.sizeToFit()
+    }
   }
 
   /// Lock screen updates using a `CATransaction`.
@@ -46,102 +96,6 @@ import UIKit
     }
   }
 
-  /// Validate if the current class was injected by checking the contents
-  /// of the notification.
-  ///
-  /// - Parameter notification: A standard InjectionIII notification
-  private func viewDidLoadIfNeeded(_ notification: Notification) {
-    guard Injection.isLoaded else { return }
-    guard Injection.viewControllerWasInjected(self, in: notification) else { return }
-    if !Injection.swizzleViewControllers {
-      NotificationCenter.default.removeObserver(self)
-    }
-
-    performInjection()
-  }
-
-  /// Clean up view hierarchy by removing child view controllers, view and layers.
-  private func performCleanUp() {
-    switch self {
-    case _ as UINavigationController:
-      break
-    case let tabBarController as UITabBarController:
-      tabBarController.setViewControllers([], animated: true)
-    default:
-      removeChildViewControllers()
-      removeViewsAndLayers()
-    }
-  }
-
-  /// Invoke all injection related methods in sequence.
-  /// If this method is invoked with animations enabled,
-  /// a snapshot of the current view will be created and
-  /// added to the applications window in order to nicely
-  /// transition to the new controller view state.
-  private func performInjection() {
-    let options: UIView.AnimationOptions = [.allowAnimatedContent,
-                                           .beginFromCurrentState,
-                                           .layoutSubviews]
-    if Injection.animations, let snapshot = self.view.snapshotView(afterScreenUpdates: false) {
-      let maskView = UIView()
-      maskView.frame.size = snapshot.frame.size
-      maskView.frame.origin.y = navigationController?.navigationBar.frame.maxY ?? 0
-      maskView.backgroundColor = .white
-      snapshot.mask = maskView
-      view.window?.addSubview(snapshot)
-      let oldScrollViews = indexScrollViews()
-      performCleanUp()
-      reloadUserInterface()
-      syncOldScrollViews(oldScrollViews, with: indexScrollViews())
-      UIView.animate(withDuration: 0.25, delay: 0.0, options: options, animations: {
-        snapshot.alpha = 0.0
-      }) { _ in
-        snapshot.removeFromSuperview()
-      }
-    } else {
-      let scrollViews = indexScrollViews()
-      lockScreenUpdates(!scrollViews.isEmpty)
-      performCleanUp()
-      reloadUserInterface()
-      unlockScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
-    }
-  }
-
-  /// Sync two scroll views content offset if they are of the same type.
-  ///
-  /// - Parameters:
-  ///   - oldScrollViews: An array of scroll views from before the injection occured.
-  ///   - newScrollViews: An array of new scroll views after the injection occured.
-  private func syncOldScrollViews(_ oldScrollViews: [UIScrollView], with newScrollViews: [UIScrollView]) {
-    for (offset, scrollView) in newScrollViews.enumerated() {
-      if offset < oldScrollViews.count {
-        let oldScrollView = oldScrollViews[offset]
-        if type(of: scrollView) == type(of: oldScrollView) {
-          scrollView.contentOffset = oldScrollView.contentOffset
-        }
-      }
-    }
-  }
-
-  /// Will invoke `viewDidLoad` to run view controllers setup operations.
-  /// In addition, it will force all subview to layout and collection & table views
-  /// to reload. This is to make sure that we are displaying the latest changes.
-  private func reloadUserInterface() {
-    viewDidLoad()
-    view.subviews.forEach { view in
-      view.setNeedsLayout()
-      view.layoutIfNeeded()
-      view.setNeedsDisplay()
-
-      (view as? UICollectionView)?.reloadData()
-      (view as? UITableView)?.reloadData()
-    }
-
-    view.subviews.filter({ $0.frame.size == .zero }).forEach {
-      $0.sizeToFit()
-    }
-  }
-
   /// Create an index of the content offsets for all underlying scroll views.
   ///
   /// - Returns: A dictionary of scroll views and their current origin.
@@ -164,6 +118,52 @@ import UIKit
     }
 
     return scrollViews
+  }
+
+  /// Sync two scroll views content offset if they are of the same type.
+  ///
+  /// - Parameters:
+  ///   - oldScrollViews: An array of scroll views from before the injection occured.
+  ///   - newScrollViews: An array of new scroll views after the injection occured.
+  private func syncOldScrollViews(_ oldScrollViews: [UIScrollView], with newScrollViews: [UIScrollView]) {
+    for (offset, scrollView) in newScrollViews.enumerated() {
+      if offset < oldScrollViews.count {
+        let oldScrollView = oldScrollViews[offset]
+        if type(of: scrollView) == type(of: oldScrollView) {
+          scrollView.contentOffset = oldScrollView.contentOffset
+        }
+      }
+    }
+  }
+
+  /// Removes all child view controllers.
+  private func removeChildViewControllers() {
+    #if swift(>=4.2)
+    children.forEach { controller in
+      controller.willMove(toParent: nil)
+      controller.view.removeFromSuperview()
+      controller.removeFromParent()
+    }
+    #else
+    childViewControllers.forEach { controller in
+      controller.willMove(toParentViewController: nil)
+      controller.view.removeFromSuperview()
+      controller.removeFromParentViewController()
+    }
+    #endif
+  }
+
+  /// Clean up view hierarchy by removing child view controllers, view and layers.
+  private func resetViewControllerState() {
+    switch self {
+    case _ as UINavigationController:
+      break
+    case let tabBarController as UITabBarController:
+      tabBarController.setViewControllers([], animated: true)
+    default:
+      removeChildViewControllers()
+      removeViewsAndLayers()
+    }
   }
 
   /// Removes all views and layers from a view.
