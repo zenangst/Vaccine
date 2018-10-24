@@ -4,8 +4,6 @@ import Cocoa
   private func viewDidLoadIfNeeded(_ notification: Notification) {
     guard Injection.isLoaded else { return }
     guard Injection.viewControllerWasInjected(self, in: notification) else { return }
-
-    NotificationCenter.default.removeObserver(self)
     removeChildViewControllers()
     removeViewsAndLayers()
     viewDidLoad()
