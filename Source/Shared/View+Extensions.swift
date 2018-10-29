@@ -87,7 +87,22 @@ extension View {
     if responds(to: _Selector(key)), let layoutConstraints = value(forKey: key) as? [NSLayoutConstraint] {
       NSLayoutConstraint.deactivate(layoutConstraints)
     } else {
-      subviewsRecursive().forEach { NSLayoutConstraint.deactivate($0.constraints) }
+      let removeConstraints: (View, NSLayoutConstraint) -> Void = { parentView, constraint in
+        if let subview = constraint.firstItem, subview.superview == parentView  {
+          NSLayoutConstraint.deactivate([constraint])
+          parentView.removeConstraint(constraint)
+        }
+      }
+
+      var constraintsToDeactivate = [NSLayoutConstraint]()
+      for view in subviewsRecursive() {
+        #if !os(macOS)
+        if let cell = self as? UITableViewCell {
+          cell.contentView.constraints.forEach { removeConstraints(cell.contentView, $0) }
+        }
+        #endif
+        constraints.forEach { removeConstraints(self, $0) }
+      }
     }
   }
 }
