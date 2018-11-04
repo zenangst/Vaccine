@@ -94,15 +94,12 @@ extension View {
         }
       }
 
-      var constraintsToDeactivate = [NSLayoutConstraint]()
-      for view in subviewsRecursive() {
-        #if !os(macOS)
-        if let cell = self as? UITableViewCell {
-          cell.contentView.constraints.forEach { removeConstraints(cell.contentView, $0) }
-        }
-        #endif
-        constraints.forEach { removeConstraints(self, $0) }
+      #if !os(macOS)
+      if let cell = self as? UITableViewCell {
+        cell.contentView.constraints.forEach { removeConstraints(cell.contentView, $0) }
       }
+      #endif
+      constraints.forEach { removeConstraints(self, $0) }
     }
   }
 }
