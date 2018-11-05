@@ -17,24 +17,6 @@ extension ViewController {
   #endif
 
 
-  #if !os(macOS)
-    public static func _swizzleViewControllers() {
-      #if DEBUG
-        DispatchQueue.once(token: "com.zenangst.Vaccine.\(#function)") {
-          let originalSelector = #selector(loadView)
-          let swizzledSelector = #selector(vaccine_loadView)
-          Swizzling.swizzle(ViewController.self,
-                            originalSelector: originalSelector,
-                            swizzledSelector: swizzledSelector)
-        }
-      #endif
-    }
-
-    @objc func vaccine_loadView() {
-      vaccine_loadView()
-      Injection.addViewController(self)
-    }
-  #else
   public static func _swizzleViewControllers() {
     #if DEBUG
     DispatchQueue.once(token: "com.zenangst.Vaccine.\(#function)") {
@@ -57,5 +39,4 @@ extension ViewController {
     }
     self.vaccine_setView(view)
   }
-  #endif
 }
