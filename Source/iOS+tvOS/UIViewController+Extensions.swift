@@ -111,7 +111,14 @@ import UIKit
       }
     }
 
-    for childViewController in children {
+    let childControllers: [UIViewController]
+    #if swift(>=4.2)
+      childControllers = children
+    #else
+      childControllers = childViewControllers
+    #endif
+
+    for childViewController in childControllers {
       for case let scrollView as UIScrollView in childViewController.view.subviews {
         scrollViews.append(scrollView)
       }
