@@ -33,7 +33,7 @@ import UIKit
       view.window?.addSubview(snapshot)
       let oldScrollViews = indexScrollViews()
 
-      if nibName == nil && nibBundle == nil {
+      if nibName == nil {
         resetViewControllerState()
         rebuildViewControllerState()
       } else {
@@ -50,7 +50,7 @@ import UIKit
       let scrollViews = indexScrollViews()
       lockScreenUpdates(!scrollViews.isEmpty)
 
-      if nibName == nil && nibBundle == nil {
+      if nibName == nil {
         resetViewControllerState()
         rebuildViewControllerState()
       } else {
