@@ -32,8 +32,14 @@ import UIKit
       snapshot.mask = maskView
       view.window?.addSubview(snapshot)
       let oldScrollViews = indexScrollViews()
-      resetViewControllerState()
-      rebuildViewContorllerState()
+
+      if nibName == nil {
+        resetViewControllerState()
+        rebuildViewControllerState()
+      } else {
+        rebuildNibViewControllerState()
+      }
+
       syncOldScrollViews(oldScrollViews, with: indexScrollViews())
       UIView.animate(withDuration: 0.25, delay: 0.0, options: options, animations: {
         snapshot.alpha = 0.0
@@ -43,16 +49,37 @@ import UIKit
     } else {
       let scrollViews = indexScrollViews()
       lockScreenUpdates(!scrollViews.isEmpty)
-      resetViewControllerState()
-      rebuildViewContorllerState()
+
+      if nibName == nil {
+        resetViewControllerState()
+        rebuildViewControllerState()
+      } else {
+        rebuildNibViewControllerState()
+      }
+
       unlockScreenUpdates(!scrollViews.isEmpty, scrollViews: scrollViews)
     }
+  }
+
+  private func rebuildNibViewControllerState() {
+    let subviews = view.subviewsRecursive()
+
+    for case let tableView as UITableView in subviews {
+      tableView.reloadData()
+    }
+
+    for case let collectionView as UICollectionView in subviews {
+      collectionView.reloadData()
+    }
+
+    viewWillAppear(false)
+    viewDidAppear(false)
   }
 
   /// Will invoke `viewDidLoad` to run view controllers setup operations.
   /// In addition, it will force all subview to layout and collection & table views
   /// to reload. This is to make sure that we are displaying the latest changes.
-  private func rebuildViewContorllerState() {
+  private func rebuildViewControllerState() {
     viewDidLoad()
     view.subviews.forEach { view in
       view.setNeedsLayout()

@@ -191,6 +191,7 @@ public class Injection {
 
   static func viewControllerWasInjected(_ viewController: ViewController,
                                         in notification: Notification) -> Bool {
+    
     if objectWasInjected(self, in: notification) { return true }
     guard let object = object(from: notification) else {
       return false
@@ -214,10 +215,19 @@ public class Injection {
       shouldRespondToInjection = object.classForCoder == viewController.classForCoder
     }
 
+
+    let objectName = "\(object.classForCoder)".lowercased()
+
     /// Do a dirty match on the class name.
     if !shouldRespondToInjection {
-      shouldRespondToInjection = "\(object.classForCoder)".lowercased().contains("viewcontroller")
+      shouldRespondToInjection = objectName.contains("viewcontroller")
     }
+
+    if !shouldRespondToInjection, objectName.contains("cell") {
+      let allSubviews = viewController.view.subviewsRecursive()
+      shouldRespondToInjection = !allSubviews.filter({ $0 is TableView || $0 is CollectionView }).isEmpty
+    }
+
 
     return shouldRespondToInjection
   }

@@ -23,7 +23,7 @@ extension View {
   /// Recursively gather all subviews into a single collection.
   ///
   /// - Returns: A collection of views.
-  private func subviewsRecursive() -> [View] {
+  func subviewsRecursive() -> [View] {
     return subviews + subviews.flatMap { $0.subviewsRecursive() }
   }
 
