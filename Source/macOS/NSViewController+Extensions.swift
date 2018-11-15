@@ -8,7 +8,16 @@ import Cocoa
   private func viewDidLoadIfNeeded(_ notification: Notification) {
     guard Injection.isLoaded else { return }
     guard Injection.viewControllerWasInjected(self, in: notification) else { return }
-    performInjection()
+
+    if !children.isEmpty && parent == nil {
+      let snapshot = createSnapshot()
+      self.view.window?.contentView?.addSubview(snapshot)
+      DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+        self?.performInjection(snapshot)
+      }
+    } else {
+      performInjection()
+    }
   }
 
   /// Invoke all injection related methods in sequence.
@@ -16,25 +25,25 @@ import Cocoa
   /// a snapshot of the current view will be created and
   /// added to the applications window in order to nicely
   /// transition to the new controller view state.
-  private func performInjection() {
+  private func performInjection(_ snapshot: NSImageView? = nil) {
     guard !(self is NSCollectionViewItem) else {
       reloadCollectionViewItem()
       return
     }
 
     if Injection.animations {
-      let snapshot = createSnapshot()
+      let currentSnapshot = snapshot ?? createSnapshot()
       let oldScrollViews = indexScrollViews()
       resetViewControllerState()
       rebuildViewContorllerState()
-      self.view.window?.contentView?.addSubview(snapshot)
+      self.view.window?.contentView?.addSubview(currentSnapshot)
       syncOldScrollViews(oldScrollViews, with: indexScrollViews())
       NSAnimationContext.runAnimationGroup({ (context) in
         context.allowsImplicitAnimation = true
         context.duration = 0.25
-        snapshot.animator().alphaValue = 0.0
+        currentSnapshot.animator().alphaValue = 0.0
       }, completionHandler: {
-        snapshot.removeFromSuperview()
+        currentSnapshot.removeFromSuperview()
       })
     } else {
       let scrollViews = indexScrollViews()
@@ -74,6 +83,8 @@ import Cocoa
       (view as? NSTableView)?.reloadData()
       (view as? NSCollectionView)?.reloadData()
     }
+    viewWillAppear()
+    viewDidAppear()
   }
 
   /// Lock screen updates using a `CATransaction`.
@@ -153,8 +164,8 @@ import Cocoa
     }
     #else
     childViewControllers.forEach {
-    $0.view.removeFromSuperview()
-    $0.removeFromParentViewController()
+      $0.view.removeFromSuperview()
+      $0.removeFromParentViewController()
     }
     #endif
   }

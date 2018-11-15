@@ -37,9 +37,17 @@ class ViewControllerTests: XCTestCase {
     let _ = viewController.view
     XCTAssertEqual(viewController.timesInvoked, 1)
     utilities.triggerInjection(viewController)
-    XCTAssertEqual(viewController.timesInvoked, 2)
-    XCTAssertEqual(viewController.children.count, 1)
-    XCTAssertEqual(viewController.view.subviews.count, 1)
-    XCTAssertEqual(viewController.view.layer?.sublayers?.count, 1)
+
+    let expectation = XCTestExpectation(description: "Wait for injection to trigger")
+
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+      XCTAssertEqual(viewController.timesInvoked, 2)
+      XCTAssertEqual(viewController.children.count, 1)
+      XCTAssertEqual(viewController.view.subviews.count, 1)
+      XCTAssertEqual(viewController.view.layer?.sublayers?.count, 1)
+      expectation.fulfill()
+    }
+
+    wait(for: [expectation], timeout: 5.0)
   }
 }
