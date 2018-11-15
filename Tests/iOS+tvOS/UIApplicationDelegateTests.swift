@@ -21,6 +21,6 @@ class UIApplicationDelegateTests: XCTestCase {
     Injection.load(then: applicationDelegate.loadInitialState)
     applicationDelegate.addInjection(with: #selector(ApplicationDelegateMock.injected(_:)))
     utilities.triggerInjection()
-    XCTAssertEqual(applicationDelegate.timesInvoked, 1)
+    XCTAssertEqual(applicationDelegate.timesInvoked, 2)
   }
 }

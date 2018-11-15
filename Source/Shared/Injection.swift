@@ -86,6 +86,10 @@ public class Injection {
       return true
     }
 
+    if !Bundle.main.bundlePath.lowercased().contains("products/debug") {
+      return true
+    }
+
     // Search for injection in the loaded bundles.
     var result: Bool = false
     for bundle in Bundle.allBundles {
@@ -116,6 +120,7 @@ public class Injection {
   @discardableResult public static func load(then handler: (() -> Void)? = nil,
                                              swizzling: Bool = true,
                                              animations: Bool = true) -> Injection.Type {
+    defer { handler?() }
     guard !Injection.isLoaded else { return self }
 
     #if targetEnvironment(simulator) || os(macOS)
@@ -131,7 +136,6 @@ public class Injection {
     swizzleCollectionViews = swizzling
     swizzleCollectionViewLayouts = swizzling
     self.animations = animations
-    handler?()
     return self
   }
 
