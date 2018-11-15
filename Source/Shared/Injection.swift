@@ -120,6 +120,7 @@ public class Injection {
   @discardableResult public static func load(then handler: (() -> Void)? = nil,
                                              swizzling: Bool = true,
                                              animations: Bool = true) -> Injection.Type {
+    defer { handler?() }
     guard !Injection.isLoaded else { return self }
 
     #if targetEnvironment(simulator) || os(macOS)
@@ -135,7 +136,6 @@ public class Injection {
     swizzleCollectionViews = swizzling
     swizzleCollectionViewLayouts = swizzling
     self.animations = animations
-    handler?()
     return self
   }
 
