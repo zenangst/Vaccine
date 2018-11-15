@@ -74,6 +74,8 @@ import Cocoa
       (view as? NSTableView)?.reloadData()
       (view as? NSCollectionView)?.reloadData()
     }
+    viewWillAppear()
+    viewDidAppear()
   }
 
   /// Lock screen updates using a `CATransaction`.
