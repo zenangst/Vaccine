@@ -86,10 +86,6 @@ public class Injection {
       return true
     }
 
-    if !Bundle.main.bundlePath.lowercased().contains("products/debug") {
-      return true
-    }
-
     // Search for injection in the loaded bundles.
     var result: Bool = false
     for bundle in Bundle.allBundles {
