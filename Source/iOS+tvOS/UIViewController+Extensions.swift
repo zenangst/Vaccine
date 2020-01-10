@@ -33,7 +33,7 @@ import UIKit
       view.window?.addSubview(snapshot)
       let oldScrollViews = indexScrollViews()
 
-      if nibName == nil {
+      if nibName == nil && storyboard == nil {
         resetViewControllerState()
         rebuildViewControllerState()
       } else {
